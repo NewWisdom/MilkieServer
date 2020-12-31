@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('USER_TB', {
-    nickName: {
+  return sequelize.define('CATEGORY_TB', {
+    categoryName: {
       type: DataTypes.STRING(10),
       allowNull: false
     }

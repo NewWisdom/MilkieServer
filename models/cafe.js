@@ -10,15 +10,28 @@ module.exports = (sequelize, DataTypes) => {
     },
     businessHours: {
       type: DataTypes.STRING(100),
-      allowNull: false
+      allowNull: true
     },
     cafePhoneNum: {
       type: DataTypes.STRING(45),
       allowNull: true
     },
-    cafeMoreInfo: {
-      type: DataTypes.STRING(100),
+    cafeLink: {
+      type: DataTypes.STRING(200),
       allowNull: true
+    },
+    cafeMapX: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    cafeMapY: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    isReal: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   }, {
     freezeTableName: true,

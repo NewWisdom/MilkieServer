@@ -20,8 +20,20 @@ db.user = require('./user')(sequelize, Sequelize);
 db.cafe.hasMany(db.menu, { onDelete: 'cascade' });
 db.menu.belongsTo(db.cafe, { onDelete: 'cascade' });
 
-/** 1 : N  User : Cafe */
-db.user.hasMany(db.cafe, { onDelete: 'cascade' });
-db.cafe.belongsTo(db.user, { onDelete: 'cascade' });
+/** N : M  User : Cafe */
+db.user.belongsToMany(db.cafe, { through: 'universe', as: 'Universed' });
+db.cafe.belongsToMany(db.user, { through: 'universe', as: 'Universer' });
+
+/** N : M User : Cafe */
+db.user.belongsToMany(db.cafe, { through: 'editStatus', as: 'Edited' });
+db.cafe.belongsToMany(db.user, { through: 'editStatus', as: 'Editor' });
+
+/** N : M User : Cafe */
+db.user.belongsToMany(db.cafe, { through: 'deleteStatus', as: 'Deleted' });
+db.cafe.belongsToMany(db.user, { through: 'deleteStatus', as: 'Deleter' });
+
+/** N : M User : Cafe */
+db.user.belongsToMany(db.cafe, { through: 'addStatus', as: 'Added' });
+db.cafe.belongsToMany(db.user, { through: 'addStatus', as: 'Adder' });
 
 module.exports = db;
