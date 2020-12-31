@@ -1,12 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('CATEGORY', {
-    categoryId: {
+  return sequelize.define('OPTION', {
+    option: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    categoryName: {
-      type: DataTypes.STRING(10),
       allowNull: false
     }
   }, {

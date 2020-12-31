@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('ADD_STATUS', {
+  return sequelize.define('AddStatus', {
+    addStatusId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     created_at: {
       type: DataTypes.DATE,
       allowNull: false
@@ -9,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    freezeTableName: true,
+    tableName: 'ADD_STATUS',
     timestamps: false,
   })
 }

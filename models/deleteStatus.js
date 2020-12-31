@@ -1,11 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('DELETE_STATUS', {
+  return sequelize.define('DeleteStatus', {
+    deleteStatusId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     reason: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
-    freezeTableName: true,
+    tableName: 'DELETE_STATUS',
     timestamps: false,
   })
 }

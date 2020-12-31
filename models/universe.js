@@ -1,9 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('UNIVERSE', {
-    
+  return sequelize.define('Universe', {
+    universeId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    }
   }, 
   {
-    freezeTableName: true,
+    tableName: 'UNIVERSE',
     timestamps: false,
   })
 }
