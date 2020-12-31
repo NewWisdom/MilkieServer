@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('CAFE_TB', {
+  return sequelize.define('CAFE', {
     cafeName: {
       type: DataTypes.STRING(45),
       allowNull: false

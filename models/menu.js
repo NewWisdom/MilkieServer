@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('MENU_TB', {
+  return sequelize.define('MENU', {
     menuName: {
       type: DataTypes.STRING(16),
       allowNull: false
@@ -11,14 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     option: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
-    cafeId: {
-      type: DataTypes.INTEGER,
-      reference: {
-        model: 'cafe',
-        key: 'id',
-      },
-      allowNull: false,
     }
   }, {
     freezeTableName: true,

@@ -1,21 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('ADDSTATUS_TB', {
-    userId: {
-      type: DataTypes.INTEGER,
-      reference: {
-        model: 'user',
-        key: 'id',
-      },
-      allowNull: false,
-    },
-    cafeId: {
-      type: DataTypes.INTEGER,
-      reference: {
-        model: 'cafe',
-        key: 'id',
-      },
-      allowNull: false,
-    },
+  return sequelize.define('ADD_STATUS', {
     created_at: {
       type: DataTypes.DATE,
       allowNull: false
