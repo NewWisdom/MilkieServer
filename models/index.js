@@ -44,8 +44,8 @@ db.user.belongsToMany(db.cafe, { through: 'DeleteManage', as: 'Deleted', foreign
 db.cafe.belongsToMany(db.user, { through: 'DeleteManage', as: 'Deleter', foreignKey: 'cafeId' });
 
 /** N : M User : Cafe */
-db.user.belongsToMany(db.cafe, { through: 'ADD_MANAGE', as: 'Added', foreignKey: 'userId' });
-db.cafe.belongsToMany(db.user, { through: 'ADD_MANAGE', as: 'Adder', foreignKey: 'cafeId' });
+db.user.belongsToMany(db.cafe, { through: 'AddManage', as: 'Added', foreignKey: 'userId' });
+db.cafe.belongsToMany(db.user, { through: 'AddManage', as: 'Adder', foreignKey: 'cafeId' });
 
 /** N : M Menu : Category */
 db.menu.belongsToMany(db.category, { through: 'MENU_CATEGORY', as: 'hasMenu', foreignKey: 'menuId' });
