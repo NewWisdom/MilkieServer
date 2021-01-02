@@ -1,20 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('AddStatus', {
-    addStatusId: {
+  return sequelize.define('RejectReason', {
+    rejectReasonId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    confirmStatus: {
+    rejectReason: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
-    tableName: 'ADD_STATUS',
+    tableName: 'REJECT_REASON',
     timestamps: false,
   })
 }

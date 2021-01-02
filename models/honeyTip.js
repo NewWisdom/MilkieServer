@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('OPTION', {
+  return sequelize.define('HONEYTIP', {
     option: {
       type: DataTypes.INTEGER,
       allowNull: false

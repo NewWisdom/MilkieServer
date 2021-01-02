@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    cafeType: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     isReal: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('DeleteStatus', {
-    deleteStatusId: {
+  return sequelize.define('DeleteManage', {
+    deleteManageId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    tableName: 'DELETE_STATUS',
+    tableName: 'DELETE_MANAGE',
     timestamps: false,
   })
 }

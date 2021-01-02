@@ -17,37 +17,42 @@ db.menu = require('./menu')(sequelize, Sequelize);
 db.user = require('./user')(sequelize, Sequelize);
 db.category = require('./category')(sequelize, Sequelize);
 db.universe = require('./universe')(sequelize, Sequelize);
-db.option = require('./option')(sequelize, Sequelize);
-db.editStatus = require('./editStatus')(sequelize, Sequelize);
-db.addStatus = require('./addStatus')(sequelize, Sequelize);
-db.deleteStatus = require('./deleteStatus')(sequelize, Sequelize);
+db.honeyTip = require('./honeyTip')(sequelize, Sequelize);
+db.editManage = require('./editManage')(sequelize, Sequelize);
+db.addManage = require('./addManage')(sequelize, Sequelize);
+db.deleteManage = require('./deleteManage')(sequelize, Sequelize);
+db.rejectReason = require('./rejectReason')(sequelize, Sequelize);
 
 /** 1 : N  Cafe : Menu */
 db.cafe.hasMany(db.menu, { onDelete: 'cascade', foreignKey: 'cafeId', sourceKey: 'id', });
 db.menu.belongsTo(db.cafe, { foreignKey: 'cafeId', targetKey: 'id', });
 
-/** 1 : N  Cafe : Option */
-db.cafe.hasMany(db.option, { onDelete: 'cascade', foreignKey: 'cafeId', sourceKey: 'id', });
-db.option.belongsTo(db.cafe, { foreignKey: 'cafeId', targetKey: 'id', });
+/** 1 : N  Cafe : HoneyTip */
+db.cafe.hasMany(db.honeyTip, { onDelete: 'cascade', foreignKey: 'cafeId', sourceKey: 'id', });
+db.honeyTip.belongsTo(db.cafe, { foreignKey: 'cafeId', targetKey: 'id', });
 
 /** N : M  User : Cafe */
 db.user.belongsToMany(db.cafe, { through: 'Universe', as: 'Universed', foreignKey: 'userId' });
 db.cafe.belongsToMany(db.user, { through: 'Universe', as: 'Universer', foreignKey: 'cafeId' });
 
 /** N : M User : Cafe */
-db.user.belongsToMany(db.cafe, { through: 'EditStatus', as: 'Edited', foreignKey: 'userId' });
-db.cafe.belongsToMany(db.user, { through: 'EditStatus', as: 'Editor', foreignKey: 'cafeId' });
+db.user.belongsToMany(db.cafe, { through: 'EditManage', as: 'Edited', foreignKey: 'userId' });
+db.cafe.belongsToMany(db.user, { through: 'EditManage', as: 'Editor', foreignKey: 'cafeId' });
 
 /** N : M User : Cafe */
-db.user.belongsToMany(db.cafe, { through: 'DeleteStatus', as: 'Deleted', foreignKey: 'userId' });
-db.cafe.belongsToMany(db.user, { through: 'DeleteStatus', as: 'Deleter', foreignKey: 'cafeId' });
+db.user.belongsToMany(db.cafe, { through: 'DeleteManage', as: 'Deleted', foreignKey: 'userId' });
+db.cafe.belongsToMany(db.user, { through: 'DeleteManage', as: 'Deleter', foreignKey: 'cafeId' });
 
 /** N : M User : Cafe */
-db.user.belongsToMany(db.cafe, { through: 'ADD_STATUS', as: 'Added', foreignKey: 'userId' });
-db.cafe.belongsToMany(db.user, { through: 'ADD_STATUS', as: 'Adder', foreignKey: 'cafeId' });
+db.user.belongsToMany(db.cafe, { through: 'ADD_MANAGE', as: 'Added', foreignKey: 'userId' });
+db.cafe.belongsToMany(db.user, { through: 'ADD_MANAGE', as: 'Adder', foreignKey: 'cafeId' });
 
 /** N : M Menu : Category */
 db.menu.belongsToMany(db.category, { through: 'MENU_CATEGORY', as: 'hasMenu', foreignKey: 'menuId' });
 db.category.belongsToMany(db.menu, { through: 'MENU_CATEGORY', as: 'hasCategory', foreignKey: 'categoryId' });
+
+/** 1 : N  rejectReason : addManage */
+db.rejectReason.hasMany(db.addManage, { onDelete: 'cascade', foreignKey: 'rejectReasonId', sourceKey: 'rejectReasonId', });
+db.addManage.belongsTo(db.rejectReason, { foreignKey: 'rejectReasonId', targetKey: 'rejectReasonId', });
 
 module.exports = db;

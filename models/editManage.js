@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('EditStatus', {
-    editStatusId: {
+  return sequelize.define('EditManage', {
+    editManageId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    tableName: 'EDIT_STATUS',
+    tableName: 'EDIT_MANAGE',
     timestamps: false,
   })
 }
