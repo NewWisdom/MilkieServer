@@ -29,6 +29,7 @@
 <br>
 
 ## `ERD(Entity Relation Diagram)`
+![ERD](https://user-images.githubusercontent.com/68318945/103414991-9bd3ff80-4bc3-11eb-9b58-9c3106734752.png)
 
 
 <br>
