@@ -9,9 +9,6 @@ module.exports = {
     const { cafeId } = req.params;
     const { reason } = req.body;
 
-    console.log(userId);
-    console.log(cafeId);
-    console.log(reason);
     if (!userId || !cafeId || !reason){
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
