@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('USER', {
+    uuid: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
     nickName: {
       type: DataTypes.STRING(10),
       allowNull: false
