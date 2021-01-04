@@ -23,4 +23,10 @@ module.exports = {
   AUTH_SUCCESS : "인증에 성공했습니다.",
   ISSUE_SUCCESS: "새로운 토큰이 생성되었습니다.",
   SUCCESS_TOKEN_REPLACEMENT: "토큰 재발급 했습니다.",
+
+  // 카페 조회
+  NOT_EXISTING_CAFE: "존재하지 않는 카페입니다",
+
+  // 정보 삭제 요청
+  REGISTER_DELETE_REQUEST_SUCCESS: "정보 삭제 요청 성공입니다",
 }
