@@ -38,4 +38,7 @@ module.exports = {
   // 제보하기
   NONE_REPORT: "사용자가 제보한 카페가 없습니다",
   READ_REPORTS_SUCCESS: "제보한 카페 불러오기 성공입니다",
+
+  // 카페 정보 불러오기
+  READ_CAFE_INFO_SUCCESS: "카페 정보 불러오기 성공입니다",
 }

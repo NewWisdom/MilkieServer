@@ -8,5 +8,6 @@ router.get('/', function(req, res, next) {
 
 router.use('/users',require('./users'));
 router.use('/report',require('./report'));
+router.use('/cafe',require('./cafe'));
 
 module.exports = router;
