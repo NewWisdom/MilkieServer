@@ -1,27 +1,39 @@
-# Milky Way
+# 🥛 Milky Way
 #### '속'상하기 쉬운 모두를 위한 카페 위치 제공 서비스, 밀키웨이  
 **서비스가 궁금하다구요? [Click!](https://www.notion.so/MILKY-s_-ce4054f1e58f4a13ae9993b4ed9a28df)**
 
-###
-## MilkieServer Member
+<br>
+
+
+## 👑  MilkieServer
+######  Milkies Lover, Milkies Server . . .✨
 |               [신지혜](https://github.com/NewWisdom)                |        [최다인](https://github.com/Chedda98)              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | 
 | <img src="https://user-images.githubusercontent.com/43840561/103657850-c3550e80-4fad-11eb-91ea-6f1926d49a34.png" height="300" /> | <img src="https://user-images.githubusercontent.com/43840561/103658277-58580780-4fae-11eb-9a62-4c54227747bf.png" height="300" /> | 
 
 
-###
-### 
-## Convention
+<br>
+
+
+## ❗️ Convention
 
 - [코드 컨벤션](https://www.notion.so/coding-convention-30c0d782d6514786b9614a923023a609)
 - [커밋 컨벤션](https://www.notion.so/commit-convention-4fe2f1344a444f838baeae80796fd795)
 
-### 
-## API 명세서
-### [📖 WIKI 📖](https://github.com/MilkyOnOurWay/MilkieServer/wiki)
 
-###
-## 핵심 기능 
+<br>
+
+
+
+## 📖 API 명세서
+### [WIKI](https://github.com/MilkyOnOurWay/MilkieServer/wiki)
+
+
+<br>
+
+
+
+## 🔎 핵심 기능 
 |       기능       |          상세 기능          | 역할 | 진척도 |
 | :--------------: | :-----------------------: | :---: | :----: |
 |     회원가입     |         닉네임 입력         | 다인 |           |
@@ -39,8 +51,12 @@
 |                  |    마이 유니버스 삭제     | 다인 |           |
 |                 |         내 주위 마이 유니버스 불러오기         | 다인 |           |
 
-###
-## Dependecy
+
+<br>
+
+
+
+## 🔗 Dependecy
 ```json
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -55,8 +71,12 @@
     "sequelize-cli": "^6.2.0"
   }
  ```
-### 
-## Model
+
+<br>
+
+
+
+## ⛓ Model
 
 ```javascript
 db.cafe = require('./cafe')(sequelize, Sequelize);
@@ -69,6 +89,7 @@ db.editManage = require('./editManage')(sequelize, Sequelize);
 db.addManage = require('./addManage')(sequelize, Sequelize);
 db.deleteManage = require('./deleteManage')(sequelize, Sequelize);
 db.rejectReason = require('./rejectReason')(sequelize, Sequelize);
+db.cafeHoneyTip = require('./cafeHoneyTip')(sequelize, Sequelize);
 
 /** 1 : N  Cafe : Menu */
 db.cafe.hasMany(db.menu, { onDelete: 'cascade', foreignKey: 'cafeId', sourceKey: 'id', });
@@ -95,16 +116,18 @@ db.menu.belongsToMany(db.category, { through: 'MENU_CATEGORY', as: 'hasMenu', fo
 db.category.belongsToMany(db.menu, { through: 'MENU_CATEGORY', as: 'hasCategory', foreignKey: 'categoryId' });
 
 /** N : M Cafe : HoneyTip */
-db.cafe.belongsToMany(db.honeyTip, { through: 'CAFE_HONEYTIP', as: 'hasCafe', foreignKey: 'cafeId' });
-db.honeyTip.belongsToMany(db.cafe, { through: 'CAFE_HONEYTIP', as: 'hasHoneyTip', foreignKey: 'honeyTipId' });
+db.cafe.belongsToMany(db.honeyTip, { through: 'cafeHoneyTip', as: 'hasCafe', foreignKey: 'cafeId' });
+db.honeyTip.belongsToMany(db.cafe, { through: 'cafeHoneyTip', as: 'hasHoneyTip', foreignKey: 'honeyTipId' });
 
 /** 1 : N  rejectReason : addManage */
 db.rejectReason.hasMany(db.addManage, { onDelete: 'cascade', foreignKey: 'rejectReasonId', sourceKey: 'rejectReasonId', });
 db.addManage.belongsTo(db.rejectReason, { foreignKey: 'rejectReasonId', targetKey: 'rejectReasonId', });
 ```
 
-###
-## ERD(Entity Relation Diagram)
+<br>
+
+
+## ☠️ ERD(Entity Relation Diagram)
 ![image](https://user-images.githubusercontent.com/43840561/103655316-67d55180-4faa-11eb-9be7-50e121639e14.png)
 
 <br>
