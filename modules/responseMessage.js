@@ -34,4 +34,8 @@ module.exports = {
   // 정보 수정 요청
   ALREADY_EDIT_REQUEST_USER: "이미 정보 수정 요청한 카페입니다",
   REGISTER_EDIT_REQUEST_SUCCESS: "정보 수정 요청 성공입니다",
+
+  // 제보하기
+  NONE_REPORT: "사용자가 제보한 카페가 없습니다",
+  READ_REPORTS_SUCCESS: "제보한 카페 불러오기 성공입니다",
 }

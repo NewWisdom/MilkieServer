@@ -5,5 +5,6 @@ const manageController = require('../../controller/reportController');
 
 router.post('/:cafeId/deleteCafe', jwtMiddleware.userJwt, manageController.deleteCafe);
 router.post('/:cafeId/editCafe', jwtMiddleware.userJwt, manageController.editCafe);
+router.get('/', jwtMiddleware.userJwt, manageController.readReports);
 
 module.exports = router;

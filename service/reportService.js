@@ -1,4 +1,4 @@
-const { cafe, deleteManage, editManage } = require('../models');
+const { cafe, deleteManage, editManage, addManage } = require('../models');
 
 module.exports = {
   readOneCafe: async (cafeId) => {
@@ -57,4 +57,15 @@ module.exports = {
       throw error;
     }
   },
+  readAllReports: async (userId) => {
+    try {
+      const reports = addManage.findAll({
+        where : {
+          userId: userId
+        }
+      })
+    } catch (error) {
+      throw error;
+    }
+  }
 }

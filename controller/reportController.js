@@ -55,5 +55,15 @@ module.exports = {
     } catch (error) {
       return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
     }
+  },
+  readReports: async (req, res) => {
+    const userId = req.userIdx;
+    
+    const reports = await reportService.readAllReports(userId);
+    if (!reports) {
+      return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NONE_REPORT));
+    }
+
+    return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_REPORTS_SUCCESS, reports));
   }
 }
