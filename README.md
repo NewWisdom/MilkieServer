@@ -16,7 +16,7 @@
 
 - ### `Milky Way`
 
-![밀키웨이 로고](https://user-images.githubusercontent.com/68318945/103261167-cc5d4300-49e3-11eb-9fee-278ae7f086a1.png)
+![밀키웨이 슬로건](https://user-images.githubusercontent.com/68318945/103611166-0b037800-4f65-11eb-9766-fcc0a68a66f1.png)
 
 <br>
 
