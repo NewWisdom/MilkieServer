@@ -18,7 +18,7 @@
 
 ### 
 ## API 명세서
-###
+### [📖 WIKI 📖](https://github.com/MilkyOnOurWay/MilkieServer/wiki)
 
 ###
 ## 핵심 기능 
