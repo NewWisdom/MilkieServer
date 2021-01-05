@@ -1,9 +1,7 @@
 # 🥛 Milky Way
 #### '속'상하기 쉬운 모두를 위한 카페 위치 제공 서비스, 밀키웨이  
-**서비스가 궁금하다구요? [Click!](https://www.notion.so/MILKY-s_-ce4054f1e58f4a13ae9993b4ed9a28df)**
 
-<br>
-
+![image](https://user-images.githubusercontent.com/43840561/103670502-fe127300-4fbc-11eb-94bd-11b17fac2373.png)
 
 ## 👑  MilkieServer
 ######  Milkies Lover, Milkies Server . . .✨
