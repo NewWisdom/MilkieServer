@@ -57,5 +57,25 @@ module.exports = {
       accessToken: accessToken,
       refreshToken: refreshToken
     }))
+  },
+  nickNameChange: async (req, res) => {
+    const { newNickName } = req.body;
+    const userIdx = req.userIdx;
+    
+    if(!newNickName) {
+      res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+      return;
+    }
+
+    const userResult = await user.update({
+      nickName: newNickName,
+    }, {
+        where: {
+          id: userIdx
+        }
+      });
+
+    res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.NICKNAME_UPDATE_SUCCESS));
+    return;
   }
 }
