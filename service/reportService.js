@@ -13,7 +13,7 @@ module.exports = {
       throw error;
     }
   },
-  readOneDeleteRequest: async (userId) => {
+  readOneDeleteCafe: async (userId) => {
     try {
       const result = deleteManage.findOne({
         userId: userId
@@ -23,7 +23,7 @@ module.exports = {
       throw error;
     }
   },
-  registerDeleteRequest: async (reason, userId, cafeId) => {
+  registerDeleteCafe: async (reason, userId, cafeId) => {
     try {
       const result = deleteManage.create({
         reason,
@@ -35,7 +35,7 @@ module.exports = {
       throw error;
     }
   },
-  readOneEditRequest: async (userId) => {
+  readOneEditCafe: async (userId) => {
     try {
       const result = editManage.findOne({
         userId
@@ -45,7 +45,7 @@ module.exports = {
       throw error;
     }
   },
-  registerEditRequest: async (reason, userId, cafeId) => {
+  registerEditCafe: async (reason, userId, cafeId) => {
     try {
       const result = editManage.create({
         reason,
