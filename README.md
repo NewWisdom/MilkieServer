@@ -70,7 +70,7 @@ db.addManage.belongsTo(db.rejectReason, { foreignKey: 'rejectReasonId', targetKe
 <br>
 
 ## `ERD(Entity Relation Diagram)`
-![ERD](https://user-images.githubusercontent.com/68318945/103414991-9bd3ff80-4bc3-11eb-9b58-9c3106734752.png)
+<img width="486" alt="밀키웨이 ERD" src="https://user-images.githubusercontent.com/68318945/103613925-d1ce0680-4f6a-11eb-8f22-2e5ec763990b.png">
 
 
 <br>
