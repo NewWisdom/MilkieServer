@@ -28,5 +28,10 @@ module.exports = {
   NOT_EXISTING_CAFE: "존재하지 않는 카페입니다",
 
   // 정보 삭제 요청
+  ALREADY_DELETE_REQUEST_USER: "이미 정보 삭제 요청한 카페입니다",
   REGISTER_DELETE_REQUEST_SUCCESS: "정보 삭제 요청 성공입니다",
+
+  // 정보 수정 요청
+  ALREADY_EDIT_REQUEST_USER: "이미 정보 수정 요청한 카페입니다",
+  REGISTER_EDIT_REQUEST_SUCCESS: "정보 수정 요청 성공입니다",
 }
