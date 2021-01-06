@@ -1,4 +1,6 @@
 module.exports = {
   userService : require('./userService'),
-  manageService: require('./manageService')
+  reportService: require('./reportService'),
+  cafeService: require('./cafeService'),
+  universeService: require('./universeService')
 }
