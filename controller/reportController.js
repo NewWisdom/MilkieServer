@@ -65,5 +65,11 @@ module.exports = {
     }
 
     return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_REPORTS_SUCCESS, reports));
+  },
+  addCafe: async (req, res) => {
+    const userId = req.userIdx;
+    const { cafeId } = req.params;
+    const { cafeName, cafeAddress, businessHours, cafeMapX, cafeMapY } = req.body;
+    // const {}
   }
 }

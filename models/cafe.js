@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     cafeType: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 1
     },
     isReal: {
       type: DataTypes.BOOLEAN,
