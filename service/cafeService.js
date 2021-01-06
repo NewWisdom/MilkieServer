@@ -17,6 +17,9 @@ module.exports = {
     try {
       /** 카페 옵션까지 조회 완료 */
       const result = await cafe.findAll({
+        where: {
+          id: cafeId
+        },
         include: [
           {
             model : honeyTip,
