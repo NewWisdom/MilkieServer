@@ -41,4 +41,7 @@ module.exports = {
 
   // 카페 정보 불러오기
   READ_CAFE_INFO_SUCCESS: "카페 정보 불러오기 성공입니다",
+  NOT_EXISTING_CAFE_INFO: "카페 정보가 존재하지 않습니다",
+  NOT_EXISTING_CAFE_MENU: "해당 카페의 메뉴가 존재하지 않습니다",
+  NOT_EXISTING_UNIVERSE: "유니버스 정보가 존재하지 않습니다"
 }
