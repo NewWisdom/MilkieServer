@@ -8,5 +8,6 @@ router.get('/', function(req, res, next) {
 
 router.use('/users',require('./users'));
 router.use('/manage',require('./manage'));
+router.use('/universe',require('./universe'));
 
 module.exports = router;
