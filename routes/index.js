@@ -7,8 +7,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/users', require('./users'));
-router.use('/manage', require('./manage'));
+router.use('/report', require('./report'));
 router.use('/universe', require('./universe'));
+router.use('/cafe', require('./cafe'));
 router.use('/home', require('./home'));
 
 module.exports = router;

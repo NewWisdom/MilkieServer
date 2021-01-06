@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     rejectReason: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(10),
       allowNull: false
     }
   }, {
