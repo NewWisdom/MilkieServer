@@ -15,8 +15,8 @@
 
 ## ❗️ Convention
 
-- [코드 컨벤션](https://www.notion.so/coding-convention-30c0d782d6514786b9614a923023a609)
-- [커밋 컨벤션](https://www.notion.so/commit-convention-4fe2f1344a444f838baeae80796fd795)
+- [코드 컨벤션](https://www.notion.so/commit-convention-4fe2f1344a444f838baeae80796fd795)
+- [커밋 컨벤션](https://www.notion.so/coding-convention-30c0d782d6514786b9614a923023a609)
 
 
 <br>
