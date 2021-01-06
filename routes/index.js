@@ -6,8 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.use('/users',require('./users'));
-router.use('/manage',require('./manage'));
-router.use('/universe',require('./universe'));
+router.use('/users', require('./users'));
+router.use('/manage', require('./manage'));
+router.use('/universe', require('./universe'));
+router.use('/home', require('./home'));
 
 module.exports = router;

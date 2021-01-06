@@ -14,7 +14,8 @@ module.exports = {
   NICKNAME_UPDATE_SUCCESS: "닉네임 변경 성공입니다.",
 
   // 유저 첫 번째 탭 조회
-  USER_HOME_SUCCESS: "유저 홈 조회 성공입니다.",
+  USER_HOME_SUCCESS: "홈 조회 성공입니다.",
+  NOT_FOUND_OPTION_CAFE: "해당 옵션의 카페가 없습니다.",
 
   // 유니버스
   UNIVERSEON_SUCCESS: "유니버스 추가 성공입니다.",
