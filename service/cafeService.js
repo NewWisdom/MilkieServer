@@ -1,4 +1,4 @@
-const { cafe, cafeHoneyTip, honeyTip, addManage } = require('../models');
+const { cafe, menu, honeyTip, category } = require('../models');
 
 module.exports = {
   readOneCafe: async (cafeId) => {
@@ -13,7 +13,7 @@ module.exports = {
       throw error;
     }
   },
-  readCafeHoneyTip: async (cafeId) => {
+  readCafeInfo: async (cafeId) => {
     try {
       /** 카페 옵션까지 조회 완료 */
       const result = await cafe.findAll({
@@ -21,8 +21,29 @@ module.exports = {
           {
             model : honeyTip,
             as: 'hasCafe',
-            attributes : ['id'],
-            through: {attributes: []}
+            attributes : ['id', 'option'],
+            through: { attributes: []} 
+          }
+        ]
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  readCafeMenu: async (cafeId) => {
+    try {
+      const result = await menu.findAll({
+        where: {
+          cafeId: cafeId,
+        },
+        attributes: { exclude: ['cafeId'] },
+        include: [
+          {
+            model : category,
+            as: 'hasMenu',
+            attributes : ['categoryId'],
+            through: { attributes: ['updatedAt']}
           }
         ]
       });
