@@ -35,7 +35,6 @@ module.exports = {
       }
       const universeCount = universe.count
 
-
       return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_CAFE_INFO_SUCCESS, {cafeInfo, menu, universeCount}));
     } catch (error) {
       return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
