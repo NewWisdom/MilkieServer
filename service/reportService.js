@@ -64,6 +64,7 @@ module.exports = {
           userId: userId
         }
       })
+      return reports;
     } catch (error) {
       throw error;
     }
