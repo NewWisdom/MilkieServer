@@ -6,9 +6,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.use('/users',require('./users'));
-router.use('/report',require('./report'));
-router.use('/cafe',require('./cafe'));
-router.use('/universe',require('./universe'));
+router.use('/users', require('./users'));
+router.use('/report', require('./report'));
+router.use('/universe', require('./universe'));
+router.use('/cafe', require('./cafe'));
+router.use('/home', require('./home'));
 
 module.exports = router;

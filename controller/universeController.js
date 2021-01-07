@@ -50,7 +50,7 @@ module.exports = {
         return;
       }
   
-      const universe = await universe.findOne({
+      const universeCount = await universe.findOne({
         where: {
           universeId: universeId,
           userId: userIdx,
@@ -58,11 +58,11 @@ module.exports = {
         }
       });
   
-      if (!universe) {
+      if (!universeCount) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_FOUND_UNIVERSE));
       }
   
-      await universe.destroy({
+      await universeCount.destroy({
         where: {
           universeId: universeId,
           userId: userIdx,
@@ -71,7 +71,7 @@ module.exports = {
       });
   
       res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.DELETE_UNIVERSE_SUCCESS, {
-        universe
+        universeCount
       }));
       return;
     } catch (err) {
