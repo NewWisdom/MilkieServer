@@ -72,5 +72,33 @@ module.exports = {
     const { cafeName, cafeAddress, businessHours, cafeMapX, cafeMapY } = req.body;
     // const {}
   },
+  confirmAndDeleteCafe: async (req, res) => {
+    const userId = req.userIdx;
+    const { cafeId } = req.params;
 
+    if (!cafeId) {
+      return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+    }
+
+    try {
+      const existingCafe = await cafeService.readOneCafe(cafeId);
+      if (!existingCafe) {
+        return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_EXISTING_CAFE));
+      }
+
+      const isRightReportUser = await reportService.readReportUser(userId, cafeId);
+      if (!isRightReportUser) {
+        return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_RIGHT_REPORT_USER));
+      }
+
+      const result = await cafeService.deleteCafe(cafeId);
+      if (!result) {
+        return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.DELETE_CAFE_FAIL));
+      }
+
+      return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.DELETE_CAFE_SUCCESS, isRightReportUser));
+    } catch (error) {
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
+    }
+  }
 }

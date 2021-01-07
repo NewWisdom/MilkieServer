@@ -7,5 +7,6 @@ router.post('/:cafeId/deleteCafe', jwtMiddleware.userJwt, reportController.delet
 router.post('/:cafeId/editCafe', jwtMiddleware.userJwt, reportController.editCafe);
 router.get('/', jwtMiddleware.userJwt, reportController.readReports);
 router.post('/:cafeId', jwtMiddleware.userJwt, reportController.readReports);
+router.delete('/:cafeId', jwtMiddleware.userJwt, reportController.confirmAndDeleteCafe);
 
 module.exports = router;

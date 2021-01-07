@@ -54,5 +54,13 @@ module.exports = {
     } catch (error) {
       throw error;
     }
+  },
+  deleteCafe: async (cafeId) => {
+    const result = await cafe.destroy({
+      where: {
+        id: cafeId
+      }
+    })
+    return result;
   }
 } 
