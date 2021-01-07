@@ -1,18 +1,6 @@
 const { cafe, deleteManage, editManage, addManage } = require('../models');
 
 module.exports = {
-  readOneCafe: async (cafeId) => {
-    try {
-      const existingCafe = await cafe.findOne({
-        where: {
-          id: cafeId,
-        }
-      });
-      return existingCafe;
-    } catch (error) {
-      throw error;
-    }
-  },
   readOneDeleteCafe: async (userId) => {
     try {
       const result = deleteManage.findOne({

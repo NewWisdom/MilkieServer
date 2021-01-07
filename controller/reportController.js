@@ -1,7 +1,7 @@
 const util = require('../modules/util');
 const responseMessage = require('../modules/responseMessage');
 const statusCode = require('../modules/statusCode');
-const { reportService } = require('../service');
+const { cafeService, reportService } = require('../service');
 
 module.exports = {
   deleteCafe: async (req, res) => {
@@ -14,7 +14,7 @@ module.exports = {
     }
 
     try {
-      const existingCafe = await reportService.readOneCafe(cafeId);
+      const existingCafe = await cafeService.readOneCafe(cafeId);
       if (!existingCafe) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_EXISTING_CAFE));
       }
@@ -40,7 +40,7 @@ module.exports = {
     }
 
     try {
-      const existingCafe = await reportService.readOneCafe(cafeId);
+      const existingCafe = await cafeService.readOneCafe(cafeId);
       if (!existingCafe) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_EXISTING_CAFE));
       }
@@ -71,5 +71,6 @@ module.exports = {
     const { cafeId } = req.params;
     const { cafeName, cafeAddress, businessHours, cafeMapX, cafeMapY } = req.body;
     // const {}
-  }
+  },
+
 }
