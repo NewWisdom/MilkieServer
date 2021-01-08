@@ -48,5 +48,10 @@ module.exports = {
   READ_CAFE_INFO_SUCCESS: "카페 정보 불러오기 성공입니다",
   NOT_EXISTING_CAFE_INFO: "카페 정보가 존재하지 않습니다",
   NOT_EXISTING_CAFE_MENU: "해당 카페의 메뉴가 존재하지 않습니다",
-  NOT_EXISTING_UNIVERSE: "유니버스 정보가 존재하지 않습니다"
+  NOT_EXISTING_UNIVERSE: "유니버스 정보가 존재하지 않습니다",
+
+  // 내가 제보한 카페 거절 이유 확인 후 삭제
+  DELETE_CAFE_SUCCESS: "내가 제보한 카페 거절 이유 확인 후 삭제 성공입니다",
+  NOT_RIGHT_REPORT_USER: "사용자가 제보한 카페가 아닙니다",
+  IS_REAL_CAFE: "등록된 카페이므로 삭제할 수 없습니다"
 }

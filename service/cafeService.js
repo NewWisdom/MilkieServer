@@ -57,5 +57,26 @@ module.exports = {
     } catch (error) {
       throw error;
     }
+  },
+  deleteCafe: async (cafeId) => {
+    const result = await cafe.destroy({
+      where: {
+        id: cafeId
+      }
+    })
+    return result;
+  },
+  checkCafeIsNotReal: async (cafeId) => {
+    try {
+      const result = await cafe.findOne({
+        where: {
+          id: cafeId,
+          isReal: 0
+        }
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
 } 
