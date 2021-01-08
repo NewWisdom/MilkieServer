@@ -24,10 +24,12 @@ module.exports = {
           {
             model : honeyTip,
             as: 'hasCafe',
-            attributes : ['id', 'option'],
+            attributes : ['id'],
             through: { attributes: []} 
           }
-        ]
+        ],
+        raw: true,
+        attributes: {exclude: ['cafeMapX', 'cafeMapY', 'cafeType', 'isReal']}
       });
       return result;
     } catch (error) {
@@ -46,9 +48,10 @@ module.exports = {
             model : category,
             as: 'hasMenu',
             attributes : ['categoryId'],
-            through: { attributes: ['updatedAt']}
+            through: { attributes: []}
           }
-        ]
+        ],
+        raw: true
       });
       return result;
     } catch (error) {
