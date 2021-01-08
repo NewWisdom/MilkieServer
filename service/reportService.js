@@ -1,4 +1,4 @@
-const { cafe, deleteManage, editManage, addManage } = require('../models');
+const { cafe, deleteManage, editManage, addManage, cafeHoneyTip } = require('../models');
 
 module.exports = {
   readOneCafe: async (cafeId) => {
@@ -64,6 +64,34 @@ module.exports = {
           userId: userId
         }
       })
+    } catch (error) {
+      throw error;
+    }
+  },
+  registerAddCafe: async (cafeName, cafeAddress, cafeMapX, cafeMapY) => {
+    try {
+      const privateCafeType = 1;
+      const notReal = 0;
+      const registerCafeId = cafe.create({
+          cafeName,
+          cafeAddress,
+          cafeMapX,
+          cafeMapY,
+          cafeType: privateCafeType,
+          isReal: notReal
+      });
+      return registerCafeId;
+    } catch (error) {
+      throw error;
+    }
+  },
+  registerAddCafeHoneyTip: async (cafeId, honeyTip) => {
+    try {
+      const result = cafeHoneyTip.create({
+        cafeId: cafeId,
+        honeyTipId: honeyTip
+      });
+      return result;
     } catch (error) {
       throw error;
     }

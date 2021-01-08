@@ -68,8 +68,27 @@ module.exports = {
   },
   addCafe: async (req, res) => {
     const userId = req.userIdx;
-    const { cafeId } = req.params;
-    const { cafeName, cafeAddress, businessHours, cafeMapX, cafeMapY } = req.body;
-    // const {}
+    const { cafeName, cafeAddress, cafeMapX, cafeMapY, honeyTip, menu } = req.body;
+
+    if (!userId || !cafeName || !cafeAddress || !cafeMapX || !cafeMapY || !honeyTip || !menu) {
+      return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+    }
+
+    // try {
+      /** 카페 등록 */
+      const registerAddCafe = await reportService.registerAddCafe(cafeName, cafeAddress, cafeMapX, cafeMapY);
+      const registerAddCafeId = registerAddCafe.dataValues.id;
+
+      /** honeyTip 등록 */
+      for (let i = 0; i < honeyTip.length; i++) {
+        let registerAddCafeHoneyTip = await reportService.registerAddCafeHoneyTip(registerAddCafeId, honeyTip[i]);
+      } 
+
+      /** menu 등록 */
+      
+      return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_ADD_CAFE_SUCCESS));
+    // } catch (error) {
+    //   return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
+    // }
   }
 }

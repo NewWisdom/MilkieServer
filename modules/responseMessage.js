@@ -41,9 +41,13 @@ module.exports = {
   ALREADY_EDIT_REQUEST_USER: "이미 정보 수정 요청한 카페입니다",
   REGISTER_EDIT_REQUEST_SUCCESS: "정보 수정 요청 성공입니다",
 
-  // 제보하기
+  // 정보 추가 요청
+  REGISTER_ADD_CAFE_SUCCESS: "정보 추가 요청 성공입니다",
+
+  // 나의 제보
   NONE_REPORT: "사용자가 제보한 카페가 없습니다",
   READ_REPORTS_SUCCESS: "제보한 카페 불러오기 성공입니다",
+  
 
   // 카페 정보 불러오기
   READ_CAFE_INFO_SUCCESS: "카페 정보 불러오기 성공입니다",
