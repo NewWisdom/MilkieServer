@@ -1,4 +1,4 @@
-const { cafe, deleteManage, editManage, addManage, cafeHoneyTip } = require('../models');
+const { cafe, deleteManage, editManage, addManage, cafeHoneyTip, menuCategory, menu} = require('../models');
 
 module.exports = {
   readOneCafe: async (cafeId) => {
@@ -68,7 +68,7 @@ module.exports = {
       throw error;
     }
   },
-  registerAddCafe: async (cafeName, cafeAddress, cafeMapX, cafeMapY) => {
+  registerCafe: async (cafeName, cafeAddress, cafeMapX, cafeMapY) => {
     try {
       const privateCafeType = 1;
       const notReal = 0;
@@ -85,11 +85,50 @@ module.exports = {
       throw error;
     }
   },
-  registerAddCafeHoneyTip: async (cafeId, honeyTip) => {
+  registerAddCafeHoneyTip: async (cafeId, honeyTipId) => {
     try {
       const result = cafeHoneyTip.create({
-        cafeId: cafeId,
-        honeyTipId: honeyTip
+        cafeId,
+        honeyTipId
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }, 
+  registerAddCafeMenu: async (cafeId, menuName, price) => {
+    try {
+      const result = menu.create({
+        menuName,
+        price,
+        cafeId
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  registerAddMenuCategory: async (menuId, categoryId) => {
+    try {
+      const result = menuCategory.create({
+        menuId,
+        categoryId
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  registerAddCafe: async (userId, cafeId) => {
+    try {
+      const progressStatus = 2;
+      const now = new Date();
+      const result = addManage.create({
+        // created_at: Sequelize.NOW,
+        userId,
+        cafeId,
+        confirmStatus: progressStatus,
+        created_at: now.toUTCString()
       });
       return result;
     } catch (error) {

@@ -74,9 +74,9 @@ module.exports = {
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
 
-    // try {
+    try {
       /** 카페 등록 */
-      const registerAddCafe = await reportService.registerAddCafe(cafeName, cafeAddress, cafeMapX, cafeMapY);
+      const registerAddCafe = await reportService.registerCafe(cafeName, cafeAddress, cafeMapX, cafeMapY);
       const registerAddCafeId = registerAddCafe.dataValues.id;
 
       /** honeyTip 등록 */
@@ -85,10 +85,18 @@ module.exports = {
       } 
 
       /** menu 등록 */
-      
+      for (let i = 0; i < menu.length; i++) {
+        let registerAddCafeMenu = await reportService.registerAddCafeMenu(registerAddCafeId, menu[i].menuName, menu[i].price);
+        for (let j = 0; j < menu[i].category.length; j++){
+          let registerAddMenuCategory = await reportService.registerAddMenuCategory(registerAddCafeMenu.dataValues.menuId, menu[i].category[j]);
+        }
+      }
+
+      /** addManage에 등록 */
+      const result = await reportService.registerAddCafe(userId, registerAddCafeId);
       return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_ADD_CAFE_SUCCESS));
-    // } catch (error) {
-    //   return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
-    // }
+    } catch (error) {
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
+    }
   }
 }
