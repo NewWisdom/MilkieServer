@@ -93,7 +93,7 @@ module.exports = {
   },
   confirmAndDeleteCafe: async (req, res) => {
     const userId = req.userIdx;
-    const { cafeId } = req.params;
+    const { cafeId }  = req.params;
 
     if (!cafeId) {
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
@@ -106,11 +106,12 @@ module.exports = {
       }
 
       const isRightReportUser = await reportService.readReportUser(userId, cafeId);
+      console.log(isRightReportUser)
       if (!isRightReportUser) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_RIGHT_REPORT_USER));
       }
 
-      const isNotRealYet = await cafeService.checkCafeIsNotReal()
+      const isNotRealYet = await cafeService.checkCafeIsNotReal(cafeId);
       if (!isNotRealYet) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.IS_REAL_CAFE));
       }
