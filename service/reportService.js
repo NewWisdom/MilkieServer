@@ -1,18 +1,6 @@
 const { cafe, deleteManage, editManage, addManage, cafeHoneyTip, menuCategory, menu} = require('../models');
 
 module.exports = {
-  readOneCafe: async (cafeId) => {
-    try {
-      const existingCafe = await cafe.findOne({
-        where: {
-          id: cafeId,
-        }
-      });
-      return existingCafe;
-    } catch (error) {
-      throw error;
-    }
-  },
   readOneDeleteCafe: async (userId) => {
     try {
       const result = deleteManage.findOne({
@@ -63,7 +51,21 @@ module.exports = {
         where : {
           userId: userId
         }
-      })
+      });
+      return reports;
+    } catch (error) {
+      throw error;
+    }
+  },
+  readReportUser: async (userId, cafeId) => {
+    try {
+      const isRightReportUser = addManage.findOne({
+        where: {
+          userId: userId,
+          cafeId: cafeId
+        }
+      });
+      return isRightReportUser;
     } catch (error) {
       throw error;
     }
