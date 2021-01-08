@@ -40,13 +40,22 @@ module.exports = {
   ALREADY_EDIT_REQUEST_USER: "이미 정보 수정 요청한 카페입니다",
   REGISTER_EDIT_REQUEST_SUCCESS: "정보 수정 요청 성공입니다",
 
-  // 제보하기
+  // 정보 추가 요청
+  REGISTER_ADD_CAFE_SUCCESS: "정보 추가 요청 성공입니다",
+
+  // 나의 제보
   NONE_REPORT: "사용자가 제보한 카페가 없습니다",
   READ_REPORTS_SUCCESS: "제보한 카페 불러오기 성공입니다",
+  
 
   // 카페 정보 불러오기
   READ_CAFE_INFO_SUCCESS: "카페 정보 불러오기 성공입니다",
   NOT_EXISTING_CAFE_INFO: "카페 정보가 존재하지 않습니다",
   NOT_EXISTING_CAFE_MENU: "해당 카페의 메뉴가 존재하지 않습니다",
-  NOT_EXISTING_UNIVERSE: "유니버스 정보가 존재하지 않습니다"
+  NOT_EXISTING_UNIVERSE: "유니버스 정보가 존재하지 않습니다",
+
+  // 내가 제보한 카페 거절 이유 확인 후 삭제
+  DELETE_CAFE_SUCCESS: "내가 제보한 카페 거절 이유 확인 후 삭제 성공입니다",
+  NOT_RIGHT_REPORT_USER: "사용자가 제보한 카페가 아닙니다",
+  IS_REAL_CAFE: "등록된 카페이므로 삭제할 수 없습니다"
 }

@@ -21,16 +21,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     cafeMapX: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DOUBLE,
       allowNull: false
     },
     cafeMapY: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DOUBLE,
       allowNull: false
     },
     cafeType: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 1
     },
     isReal: {
       type: DataTypes.BOOLEAN,

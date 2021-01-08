@@ -24,10 +24,12 @@ module.exports = {
           {
             model : honeyTip,
             as: 'hasCafe',
-            attributes : ['id', 'option'],
+            attributes : ['id'],
             through: { attributes: []} 
           }
-        ]
+        ],
+        raw: true,
+        attributes: {exclude: ['cafeMapX', 'cafeMapY', 'cafeType', 'isReal']}
       });
       return result;
     } catch (error) {
@@ -46,9 +48,31 @@ module.exports = {
             model : category,
             as: 'hasMenu',
             attributes : ['categoryId'],
-            through: { attributes: ['updatedAt']}
+            through: { attributes: []}
           }
-        ]
+        ],
+        raw: true
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  deleteCafe: async (cafeId) => {
+    const result = await cafe.destroy({
+      where: {
+        id: cafeId
+      }
+    })
+    return result;
+  },
+  checkCafeIsNotReal: async (cafeId) => {
+    try {
+      const result = await cafe.findOne({
+        where: {
+          id: cafeId,
+          isReal: 0
+        }
       });
       return result;
     } catch (error) {
