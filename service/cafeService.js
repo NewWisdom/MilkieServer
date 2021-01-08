@@ -62,5 +62,18 @@ module.exports = {
       }
     })
     return result;
+  },
+  checkCafeIsNotReal: async (cafeId) => {
+    try {
+      const result = await cafe.findOne({
+        where: {
+          id: cafeId,
+          isReal: 0
+        }
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
 } 
