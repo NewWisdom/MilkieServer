@@ -15,12 +15,11 @@ module.exports = {
 
   // 유저 첫 번째 탭 조회
   USER_HOME_SUCCESS: "홈 조회 성공입니다.",
-  NOT_FOUND_CATEGORY_CAFE: "해당 카테고리의 카페가 없습니다.",
 
   // 유니버스
   UNIVERSEON_SUCCESS: "유니버스 추가 성공입니다.",
-  NOT_FOUND_UNIVERSE: "존재하지 않는 유니버스입니다.",
   DELETE_UNIVERSE_SUCCESS: "유니버스 삭제 성공입니다.",
+  USER_UNIVERSE_SUCCESS: "유니버스 홈 조회 성공입니다.",
 
   // TOKEN MESSAGE
   EMPTY_TOKEN : "토큰 값이 없습니다.",
