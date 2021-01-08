@@ -59,12 +59,37 @@ module.exports = {
   readReports: async (req, res) => {
     const userId = req.userIdx;
     
-    const reports = await reportService.readAllReports(userId);
-    if (!reports) {
-      return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NONE_REPORT));
-    }
+    try {
+      const reports = new Object();
+      const cancel = 1;
+      const progress = 2;
+      const confirm = 3;
 
-    return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_REPORTS_SUCCESS, reports));
+      const canceledReports = await reportService.readReportsByStatus(userId, cancel);
+      if (canceledReports.length == 0) {
+        reports['1']= []
+      } else {
+        reports['1'] = canceledReports
+      }
+
+      const progressReports = await reportService.readReportsByStatus(userId, progress);
+      if (!progressReports) {
+        reports['2']= []
+      } else {
+        reports['2'] = progressReports
+      }
+
+      const confirmedReports = await reportService.readReportsByStatus(userId, confirm);
+      if (!confirmedReports) {
+        reports['3']= []
+      } else {
+        reports['3'] = confirmedReports
+      }
+    
+      return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_REPORTS_SUCCESS, reports));
+    } catch (error) {
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
+    }
   },
   confirmAndDeleteCafe: async (req, res) => {
     const userId = req.userIdx;

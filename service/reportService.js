@@ -45,13 +45,18 @@ module.exports = {
       throw error;
     }
   },
-  readAllReports: async (userId) => {
+  readReportsByStatus: async (userId, status) => {
     try {
       const reports = addManage.findAll({
         where : {
-          userId: userId
-        }
-      });
+          userId: userId,
+          confirmStatus: status
+        },
+        attributes: {
+          exclude: ["addManageId", "userId", "confirmStatus"]
+        },
+        raw: true
+      })
       return reports;
     } catch (error) {
       throw error;
