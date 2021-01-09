@@ -11,7 +11,23 @@ module.exports = {
 
     try {
       const aroundCafe = await cafe.findAll({
-        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'isReal']
+        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'cafeMapX', 'cafeMapY', 'isReal']
+      });
+
+      const universeResult = await universe.findAll({
+        attributes: [[sequelize.fn('COUNT', sequelize.col('universeId')), 'universeCount']],
+        where: {
+          userId: userIdx
+        } 
+      });
+  
+      const { universeCount } = universeResult[0].dataValues;
+
+      const isUniverse = await universe.findAll({
+        attributes: ['cafeId'],
+        where: {
+          userId: userIdx
+        }
       });
 
       const userNickName = await user.findAll({
@@ -25,6 +41,8 @@ module.exports = {
 
       res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.USER_HOME_SUCCESS, {
         aroundCafe,
+        universeCount,
+        isUniverse,
         nickName
       }));
       return;
