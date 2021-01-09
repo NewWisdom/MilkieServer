@@ -53,23 +53,10 @@
 
 <br>
 
+## 🚀 Architecture
+<img src="https://user-images.githubusercontent.com/43840561/104095511-8c973500-52da-11eb-9cea-e8e77deb35f5.png" width="1000" />
 
 
-## 🔗 Dependecy
-```json
-  "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "~1.9.1",
-    "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0"
-  }
- ```
 
 <br>
 
@@ -131,6 +118,20 @@ db.addManage.belongsTo(db.rejectReason, { foreignKey: 'rejectReasonId', targetKe
 
 <br>
 
-
+## 🔗 Dependecy
+```json
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "~1.9.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
+ ```
 
 
