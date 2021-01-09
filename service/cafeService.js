@@ -42,7 +42,7 @@ module.exports = {
         where: {
           cafeId: cafeId,
         },
-        attributes: { exclude: ['cafeId'] },
+        attributes: { exclude: ['cafeId', 'menuId'] },
         include: [
           {
             model : category,
