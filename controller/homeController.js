@@ -1,7 +1,7 @@
 const statusCode = require("../modules/statusCode");
 const responseMessage = require("../modules/responseMessage");
 const util = require("../modules/util");
-const { user, cafe, category, menuCategory, menu } = require('../models/index');
+const { user, cafe, universe, menuCategory, menu } = require('../models/index');
 const jwt = require('../modules/jwt');
 const sequelize = require('sequelize');
 
