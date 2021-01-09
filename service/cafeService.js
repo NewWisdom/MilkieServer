@@ -48,10 +48,11 @@ module.exports = {
             model : category,
             as: 'hasMenu',
             attributes : ['categoryId'],
-            through: { attributes: []}
+            through: { attributes: []},
+            group: ["menuId"],
           }
         ],
-        raw: true
+        // raw: true
       });
       return result;
     } catch (error) {

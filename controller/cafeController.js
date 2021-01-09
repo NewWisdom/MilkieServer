@@ -14,14 +14,16 @@ module.exports = {
 
     try {
       let cafeInfo = await cafeService.readCafeInfo(cafeId);
-      if (!cafeInfo) {
+      if (cafeInfo.length == 0) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_EXISTING_CAFE_INFO));
       }
       /** 데이커 가공 */
       const honeyTips = []
       for (let i = 0; i < cafeInfo.length; i++) {
-        honeyTips.push(cafeInfo[i]['hasCafe.id'])
-        delete cafeInfo[i]['hasCafe.id'];
+        if (cafeInfo[i]['hasCafe.id']){
+          honeyTips.push(cafeInfo[i]['hasCafe.id']);
+          delete cafeInfo[i]['hasCafe.id'];
+        }     
       }
       cafeInfo = cafeInfo[0]
       cafeInfo['honeyTip'] = honeyTips;
@@ -31,8 +33,12 @@ module.exports = {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_EXISTING_CAFE_MENU));
       }
       for (let i = 0; i < menu.length; i++) {
-        menu[i]['category'] = menu[i]['hasMenu.categoryId'];
-        delete menu[i]['hasMenu.categoryId'];
+        let temp = []
+        for (let j = 0; j < menu[i].dataValues['hasMenu'].length; j++) {
+          temp.push(menu[i].dataValues.hasMenu[j].dataValues['categoryId'])
+        }
+        menu[i].dataValues['category'] = temp;
+        delete menu[i].dataValues['hasMenu'];
       }
 
       const universe = await universeService.readUniverseCount(cafeId);
