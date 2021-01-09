@@ -34,21 +34,21 @@
 ## 🔎 핵심 기능 
 |       기능       |          상세 기능          | 역할 | 진척도 |
 | :--------------: | :-----------------------: | :---: | :----: |
-|     회원가입     |         닉네임 입력         | 다인 |    **<span style="color:green">Done</span>**       |
-|                  |       로그인 기능       | 다인 |     **<span style="color:green">Done</span>**      |
-|    홈 탭          |    내 주위 카페 불러오기      | 다인 |      **<span style="color:green">Done</span>**     |
-|                  |     카테고리별 카페 불러오기     | 다인 |     **<span style="color:green">Done</span>**      |
-| 카페 상세 페이지 |       카페 상세 정보 불러오기        | 지혜 |    **<span style="color:green">Done</span>**       |
-|     제보하기     |          카페 정보 수정 요청           | 지혜 |    **<span style="color:green">Done</span>**       |
-|                  |      카페 정보 삭제 요청       | 지혜 |      **<span style="color:green">Done</span>**     |
-|                  |       카페 제보하기         | 지혜 |     **<span style="color:green">Done</span>**      |
-|   나의 제보 탭        |     내가 제보한 카페 불러오기     | 지혜 |       **<span style="color:green">Done</span>**    |
-|                  |   내가 제보한 카페 거절 이유 불러오기   | 지혜 |     **<span style="color:green">Done</span>**      |
-|               |     제보한 카페 거절 후 삭제      | 지혜 |     **<span style="color:green">Done</span>**      |
-|       유니버스       |        마이 유니버스 추가        | 다인 |     **<span style="color:green">Done</span>**      |
-|                  |    마이 유니버스 삭제     | 다인 |      **<span style="color:green">Done</span>**     |
-|                 |         내 주위 마이 유니버스 불러오기         | 다인 |      **<span style="color:green">Done</span>**     |
-|       설정       |         닉네임 변경          | 다인 |     **<span style="color:green">Done</span>**      |
+|     회원가입     |         닉네임 입력         | 다인 |    **Done❗**       |
+|                  |       로그인 기능       | 다인 |     **Done❗**      |
+|    홈 탭          |    내 주위 카페 불러오기      | 다인 |      **Done❗**     |
+|                  |     카테고리별 카페 불러오기     | 다인 |     **Done❗**      |
+| 카페 상세 페이지 |       카페 상세 정보 불러오기        | 지혜 |    **Done❗**       |
+|     제보하기     |          카페 정보 수정 요청           | 지혜 |    **Done❗**       |
+|                  |      카페 정보 삭제 요청       | 지혜 |      **Done❗**     |
+|                  |       카페 제보하기         | 지혜 |     **Done❗**      |
+|   나의 제보 탭        |     내가 제보한 카페 불러오기     | 지혜 |       **Done❗**    |
+|                  |   내가 제보한 카페 거절 이유 불러오기   | 지혜 |     **Done❗**      |
+|               |     제보한 카페 거절 후 삭제      | 지혜 |     **Done❗**      |
+|       유니버스       |        마이 유니버스 추가        | 다인 |     **Done❗**      |
+|                  |    마이 유니버스 삭제     | 다인 |      **Done❗**     |
+|                 |         내 주위 마이 유니버스 불러오기         | 다인 |      **Done❗**     |
+|       설정       |         닉네임 변경          | 다인 |     **Done❗**      |
 
 
 <br>
