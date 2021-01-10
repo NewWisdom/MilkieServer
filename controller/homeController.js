@@ -1,7 +1,7 @@
 const statusCode = require("../modules/statusCode");
 const responseMessage = require("../modules/responseMessage");
 const util = require("../modules/util");
-const { user, cafe, category, menuCategory, menu } = require('../models/index');
+const { user, cafe, universe, menuCategory, menu } = require('../models/index');
 const jwt = require('../modules/jwt');
 const sequelize = require('sequelize');
 
@@ -10,9 +10,37 @@ module.exports = {
     const userIdx = req.userIdx;
 
     try {
-      const aroundCafe = await cafe.findAll({
-        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'cafeMapX', 'cafeMapY', 'isReal']
+      const updateHours = await cafe.update({
+        businessHours : '',
+      }, {
+        where: {
+          businessHours: null
+        }
       });
+
+      const aroundCafe = await cafe.findAll({
+        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'cafeMapX', 'cafeMapY', 'isReal'],
+        where: {
+          businessHours: updateHours,
+          isReal: true
+        }
+      });
+
+      const universeResult = await universe.findAll({
+        attributes: [[sequelize.fn('COUNT', sequelize.col('universeId')), 'universeCount']],
+        where: {
+          userId: userIdx
+        } 
+      });
+
+      const { universeCount } = universeResult[0].dataValues;
+
+      // const isUniverse = await universe.findAll({
+      //   attributes: ['cafeId'],
+      //   where: {
+      //     userId: userIdx
+      //   }
+      // });
 
       const userNickName = await user.findAll({
         attributes: ['nickName'],
@@ -25,6 +53,7 @@ module.exports = {
 
       res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.USER_HOME_SUCCESS, {
         aroundCafe,
+        universeCount,
         nickName
       }));
       return;
