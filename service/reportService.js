@@ -1,4 +1,4 @@
-const { cafe, deleteManage, editManage, addManage, cafeHoneyTip, menuCategory, menu} = require('../models');
+const { cafe, deleteManage, editManage, addManage, cafeHoneyTip, menuCategory, menu, user, sequelize} = require('../models');
 
 module.exports = {
   readOneDeleteCafe: async (userId) => {
@@ -141,5 +141,38 @@ module.exports = {
     } catch (error) {
       throw error;
     }
-  }
+  },
+  readCanceledReports: async (userId) => {
+    try {
+      const cancel = 1;
+      const reports = sequelize.query(`SELECT c.id, c.cafeName, c.cafeAddress, a.created_at, a.rejectReasonId 
+      FROM CAFE c 
+      INNER JOIN ( ADD_MANAGE a INNER JOIN USER u ON u.id = a.userId) ON c.id = a.cafeId AND u.id = ${userId}
+      where a.confirmStatus = ${cancel};`);
+      return reports;
+    } catch (error) {
+      throw error;
+    }
+  },
+  readProgressReports: async (userId) => {
+    try {
+      const progress = 2;
+      const reports = sequelize.query(`SELECT c.id, c.cafeName, c.cafeAddress, a.created_at, a.rejectReasonId  
+      FROM CAFE c 
+      INNER JOIN ( ADD_MANAGE a INNER JOIN USER u ON u.id = a.userId) ON c.id = a.cafeId AND u.id = ${userId}
+      where a.confirmStatus = ${progress};`);
+      return reports;
+    } catch (error) {
+      throw error;
+    }
+  },
+  readConfirmedReports: async (userId) => {
+    try {
+      const confirm = 2;
+      const result = await sequelize.query(`SELECT c.id, c.cafeName, c.cafeAddress, a.created_at FROM CAFE c INNER JOIN ( ADD_MANAGE a INNER JOIN USER u ON u.id = a.userId) ON c.id = a.cafeId AND u.id = ${userId} where a.confirmStatus = ${confirm};`)
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
 }
