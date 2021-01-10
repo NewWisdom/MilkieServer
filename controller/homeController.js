@@ -4,6 +4,7 @@ const util = require("../modules/util");
 const { user, cafe, universe, menuCategory, menu } = require('../models/index');
 const jwt = require('../modules/jwt');
 const sequelize = require('sequelize');
+const { universeService } = require('../service');
 
 module.exports = {
   milkyHome: async (req, res) => {
@@ -23,8 +24,18 @@ module.exports = {
         where: {
           businessHours: updateHours,
           isReal: true
-        }
+        },
+        raw: true
+
       });
+      for (let i = 0; i < aroundCafe.length; i++){
+        const result = await universeService.isUniversed(userIdx, aroundCafe[i].id);
+        if (result.length == 0) {
+          aroundCafe[i]["isUniversed"] = false;
+        } else {
+          aroundCafe[i]["isUniversed"] = true;
+        }
+      }
 
       const universeResult = await universe.findAll({
         attributes: [[sequelize.fn('COUNT', sequelize.col('universeId')), 'universeCount']],
@@ -34,13 +45,6 @@ module.exports = {
       });
 
       const { universeCount } = universeResult[0].dataValues;
-
-      // const isUniverse = await universe.findAll({
-      //   attributes: ['cafeId'],
-      //   where: {
-      //     userId: userIdx
-      //   }
-      // });
 
       const userNickName = await user.findAll({
         attributes: ['nickName'],
