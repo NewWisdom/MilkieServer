@@ -12,5 +12,18 @@ module.exports = {
     } catch (error) {
       throw error;
     }
+  },
+  isUniversed: async (userId, cafeId) => {
+    try {
+      const result = universe.findAll({
+        where: {
+          cafeId: cafeId,
+          userId: userId
+        }
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
 } 
