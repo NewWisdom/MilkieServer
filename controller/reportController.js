@@ -61,28 +61,35 @@ module.exports = {
     
     try {
       const reports = new Object();
-      const cancel = 1;
-      const progress = 2;
-      const confirm = 3;
 
-      const canceledReports = await reportService.readReportsByStatus(userId, cancel);
+      const canceledReportsResult = await reportService.readCanceledReports(userId);
+      const canceledReports = canceledReportsResult[0];
       if (canceledReports.length == 0) {
         reports['1']= []
       } else {
         reports['1'] = canceledReports
       }
 
-      const progressReports = await reportService.readReportsByStatus(userId, progress);
-      if (!progressReports) {
+      const progressReportsResult = await reportService.readProgressReports(userId);
+      const progressReports = progressReportsResult[0];
+      if (progressReports.length == 0) {
         reports['2']= []
       } else {
         reports['2'] = progressReports
       }
 
-      const confirmedReports = await reportService.readReportsByStatus(userId, confirm);
-      if (!confirmedReports) {
+      const temp = await reportService.readConfirmedReports(userId);
+      const confirmedReports = temp[0];
+      if (confirmedReports.length == 0) {
         reports['3']= []
       } else {
+        for (let i = 0; i < confirmedReports.length; i++){
+          let tt = await cafeService.readCafeCategory(confirmedReports[i].id);
+          confirmedReports[i]['category'] = [];
+          for (let j = 0; j < tt[0].length; j++) {
+            confirmedReports[i]['category'].push(tt[0][j].categoryId)
+          }
+        }
         reports['3'] = confirmedReports
       }
     
@@ -106,13 +113,12 @@ module.exports = {
       }
 
       const isRightReportUser = await reportService.readReportUser(userId, cafeId);
-      console.log(isRightReportUser)
-      if (!isRightReportUser) {
+      if (isRightReportUser.length == 0) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_RIGHT_REPORT_USER));
       }
 
       const isNotRealYet = await cafeService.checkCafeIsNotReal(cafeId);
-      if (!isNotRealYet) {
+      if (isNotRealYet.length == 0) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.IS_REAL_CAFE));
       }
 

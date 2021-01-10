@@ -1,4 +1,4 @@
-const { cafe, menu, honeyTip, category } = require('../models');
+const { cafe, menu, honeyTip, category, sequelize } = require('../models');
 
 module.exports = {
   readOneCafe: async (cafeId) => {
@@ -74,6 +74,16 @@ module.exports = {
           id: cafeId,
           isReal: 0
         }
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  readCafeCategory: async (cafeId) => {
+    try{ 
+      const result = await sequelize.query(`SELECT distinct(CATEGORY.categoryId) FROM MENU LEFT OUTER JOIN ( MENU_CATEGORY INNER JOIN CATEGORY ON CATEGORY.categoryId = MENU_CATEGORY.categoryId)  ON MENU.menuId = MENU_CATEGORY.menuId WHERE MENU.cafeId = ${cafeId};`,{
+        raw: true
       });
       return result;
     } catch (error) {
