@@ -1,4 +1,5 @@
-const { cafe, menu, honeyTip, category, sequelize } = require('../models');
+const { cafe, menu, honeyTip, category, sequelize, Sequelize } = require('../models');
+const Op = Sequelize.Op;
 
 module.exports = {
   readOneCafe: async (cafeId) => {
@@ -89,5 +90,20 @@ module.exports = {
     } catch (error) {
       throw error;
     }
-  }
+  },
+  isExistingCafeByPosition: async (cafeAddress) => {
+    try{ 
+      // const result = await sequelize.query(`SELECT CAFE.cafeAddress FROM CAFE WHERE CAFE.cafeAddress like '${cafeAddress}%';`);
+      const result = await cafe.findOne({
+        where: {
+          cafeAddress: {
+            [Op.like]: `${cafeAddress}%`
+          }
+        }
+      })
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
 } 
