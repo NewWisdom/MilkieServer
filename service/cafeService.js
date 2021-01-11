@@ -104,4 +104,13 @@ module.exports = {
       throw error;
     }
   },
+  readCafeHoneyTip: async (cafeId) => {
+    try{ 
+      const result =  await sequelize.query(`select honeyTipId from CAFE_HONEYTIP where cafeId = ${cafeId};`)
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+ 
 } 

@@ -17,13 +17,15 @@ module.exports = {
       if (cafeInfo.length == 0) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_EXISTING_CAFE_INFO));
       }
-      /** 데이커 가공 */
+      /** 데이터 가공 */
       const honeyTips = []
       for (let i = 0; i < cafeInfo.length; i++) {
         if (cafeInfo[i]['hasCafe.id']){
           honeyTips.push(cafeInfo[i]['hasCafe.id']);
           delete cafeInfo[i]['hasCafe.id'];
-        }     
+        } else {
+          delete cafeInfo[i]['hasCafe.id'];
+        }
       }
       cafeInfo = cafeInfo[0]
       cafeInfo['honeyTip'] = honeyTips;
