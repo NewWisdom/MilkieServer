@@ -1,41 +1,48 @@
 const statusCode = require("../modules/statusCode");
 const responseMessage = require("../modules/responseMessage");
 const util = require("../modules/util");
-const { user, cafe, universe, menuCategory, menu } = require('../models/index');
+const { user, cafe, universe, menuCategory, menu, sequelize } = require('../models/index');
 const jwt = require('../modules/jwt');
-const sequelize = require('sequelize');
+// const sequelize = require('sequelize');
 const { universeService } = require('../service');
 
 module.exports = {
   milkyHome: async (req, res) => {
     const userIdx = req.userIdx;
 
-    try {
-      const aroundCafe = await cafe.findAll({
-        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'cafeMapX', 'cafeMapY', 'isReal'],
-        where: {
-          isReal: true
-        },
-        raw: true
-      });
+    // try {
+      // const aroundCafe = await cafe.findAll({
+      //   attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'cafeMapX', 'cafeMapY', 'isReal'],
+      //   where: {
+      //     isReal: true
+      //   },
+      //   raw: true
+      // });
 
-      for (let i = 0; i < aroundCafe.length; i++) {
-        const result = await universeService.isUniversed(userIdx, aroundCafe[i].id);
-        if (result.length == 0) {
-          aroundCafe[i]['isUniversed'] = false;
-        } else {
-          aroundCafe[i]['isUniversed'] = true;
-        }
-      }
+      // for (let i = 0; i < aroundCafe.length; i++) {
+      //   const result = await universeService.isUniversed(userIdx, aroundCafe[i].id);
+      //   if (result.length == 0) {
+      //     aroundCafe[i]['isUniversed'] = false;
+      //   } else {
+      //     aroundCafe[i]['isUniversed'] = true;
+      //   }
+      // }
 
-      const universeResult = await universe.findAll({
-        attributes: [[sequelize.fn('COUNT', sequelize.col('universeId')), 'universeCount']],
-        where: {
-          userId: userIdx
-        } 
-      });
+      const result = await sequelize.query(`SELECT CAFE.id, CAFE.cafeName, universeCount, CAFE.cafeMapX, CAFE.cafeMapY, CAFE.cafeAddress, CAFE.businessHours,
+      ifnull(isUniversed, false) as isUniversed
+              FROM CAFE LEFT JOIN (
+                  SELECT distinct UNIVERSE.cafeId, count(UNIVERSE.cafeId) universeCount, true as isUniversed
+                  FROM UNIVERSE
+                  WHERE userId = ${userIdx}
+              ) as cu ON CAFE.id = cu.cafeId;`)
+      // const universeResult = await universe.findAll({
+      //   attributes: [[sequelize.fn('COUNT', sequelize.col('universeId')), 'universeCount']],
+      //   where: {
+      //     userId: userIdx
+      //   } 
+      // });
 
-      const { universeCount } = universeResult[0].dataValues;
+      // const { universeCount } = universeResult[0].dataValues;
 
       const userNickName = await user.findAll({
         attributes: ['nickName'],
@@ -47,15 +54,16 @@ module.exports = {
       const { nickName } = userNickName[0];
 
       res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.USER_HOME_SUCCESS, {
-        aroundCafe,
-        universeCount,
+        // aroundCafe,
+        // universeCount,
+        result,
         nickName
       }));
       return;
-    } catch (err) {
-      res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.INTERNAL_SERVER_ERROR));
-      return;
-    }
+    // } catch (err) {
+    //   res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.INTERNAL_SERVER_ERROR));
+    //   return;
+    // }
   },
   categoryHome: async (req, res) => {
     const userIdx = req.userIdx;
