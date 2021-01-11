@@ -8,7 +8,7 @@ require('dotenv').config();
 module.exports = {
   searchCafeByKakaoAPI: async (req, res) => {
     const userId = req.userIdx;
-    const { query } = req.params;
+    const query  = req.query.query;
     const { KAKAO_KEY } = process.env;
 
     try {
@@ -32,7 +32,6 @@ module.exports = {
                           return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
                       });;
       const cafes = [];
-      console.log(result)
       for (let i = 0; i < result.length; i++) {
         let cafe = new Object();
         cafe["cafeName"] = result[i].place_name;
