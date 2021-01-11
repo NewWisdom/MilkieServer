@@ -11,27 +11,17 @@ module.exports = {
   searchCafeByDB: async (req, res) => {
     const userId = req.userIdx;
     const searchWord = req.params.searchWord;
-    const Op = Sequelize.Op;
-    const operatorsAliases = {
-      $like: Op.like,
-      $not: Op.not
-    }
+    // const Op = Sequelize.Op;
+    // const operatorsAliases = {
+    //   $like: Op.like,
+    //   $not: Op.not
+    // }
 
     // try {
-      const searchCafe = await cafe.findAll({
-        limit: 14,
-        where: {
-          [sequelize.Op.or]:{
-            namesQuery: sequelize.where(
-              sequelize.fn("concat", sequelize.col("firstName"), " ", sequelize.col("lastName")),
-            {
-              [sequelize.Op.like]: `%${searchWord}%`,
-            }
-          ),
-          cafeName: {[sequelize.Op.like]: `%${searchWord}%`},
-        }
-      }
-    });
+      const searchCafeTemp = await sequelize.query(`select cafeName, cafeAddress, cafeMapX, cafeMapY 
+      from CAFE
+      where cafeName like '%${searchWord}%';`);
+      const searchCafe = searchCafeTemp[0];
       
       if (!searchCafe) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NONE_SEARCH))
