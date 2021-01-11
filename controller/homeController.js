@@ -10,19 +10,19 @@ module.exports = {
     const userIdx = req.userIdx;
 
     try {
-      const result = await sequelize.query(`SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.cafeMapX, CAFE.cafeMapY, CAFE.cafeAddress, CAFE.businessHours,
+      const tempResult = await sequelize.query(`SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.cafeMapX, CAFE.cafeMapY, CAFE.cafeAddress, CAFE.businessHours,
       ifnull(isUniversed, false) as isUniversed
               FROM CAFE LEFT JOIN (
                   SELECT distinct UNIVERSE.cafeId, count(UNIVERSE.cafeId) universeCount, true as isUniversed
                   FROM UNIVERSE
                   WHERE userId = ${userIdx}
               ) as cu ON CAFE.id = cu.cafeId;`);
-
-      for (let i = 0; i < result[0].length; i++) {
-        if (result[0][i].isUniversed == 1) {
-          result[0][i].isUniversed = true
+      const result = tempResult[0];
+      for (let i = 0; i < result.length; i++) {
+        if (result[i].isUniversed == 1) {
+          result[i].isUniversed = true
         } else {
-          result[0][i].isUniversed = false
+          result[i].isUniversed = false
         }
       }
       const userNickName = await user.findAll({
