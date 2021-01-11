@@ -6,6 +6,46 @@ const request = require('request-promise');
 require('dotenv').config();
 
 module.exports = {
+  searchHomeByKakaoAPI: async (req, res) => {
+    const userId = req.userIdx;
+    const query  = req.query.query;
+    const { KAKAO_KEY } = process.env;
+
+    try {
+      const kakaoOptions = {
+        url: 'https://dapi.kakao.com/v2/local/search/keyword.json',  
+        method: 'GET',
+        headers: {
+          'Authorization': `KakaoAK ${KAKAO_KEY}`
+        },
+        qs: {
+          query : query 
+        },
+        encoding: 'UTF-8',
+      }
+  
+      const result = await request(kakaoOptions)
+                        .then(function(response) {
+                          return JSON.parse(response).documents;
+                        })
+                        .catch(function(err) {
+                          return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
+                      });
+      const cafes = [];
+      for (let i = 0; i < result.length; i++) {
+        let cafe = new Object();
+        cafe["cafeName"] = result[i].place_name;
+        cafe["cafeAddress"] = result[i].road_address_name;
+        cafe["cafeMapX"] = result[i].x;
+        cafe["cafeMapY"] = result[i].y;
+        cafes.push(cafe);
+      }
+
+      return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.SEARCH_SUCCESS, cafes)); 
+    } catch (error) {
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
+    }
+  },
   searchCafeByKakaoAPI: async (req, res) => {
     const userId = req.userIdx;
     const query  = req.query.query;
@@ -30,7 +70,7 @@ module.exports = {
                         })
                         .catch(function (err) {
                           return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
-                      });;
+                      });
       const cafes = [];
       for (let i = 0; i < result.length; i++) {
         let cafe = new Object();

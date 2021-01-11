@@ -17,7 +17,8 @@ module.exports = {
   USER_HOME_SUCCESS: "홈 조회 성공입니다.",
 
   // 검색 조회
-  SEARCH_MILKY_WAY: "검색 조회 성공입니다.",
+  NONE_SEARCH: "사용자가 검색한 카페가 없습니다.",
+  SEARCH_SUCCESS: "검색 조회 성공입니다.",
 
   // 유니버스
   UNIVERSEON_SUCCESS: "유니버스 추가 성공입니다.",
@@ -49,7 +50,6 @@ module.exports = {
   // 나의 제보
   NONE_REPORT: "사용자가 제보한 카페가 없습니다",
   READ_REPORTS_SUCCESS: "제보한 카페 불러오기 성공입니다",
-  
 
   // 카페 정보 불러오기
   READ_CAFE_INFO_SUCCESS: "카페 정보 불러오기 성공입니다",
