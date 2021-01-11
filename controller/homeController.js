@@ -46,7 +46,7 @@ module.exports = {
   },
   categoryHome: async (req, res) => {
     const userIdx = req.userIdx;
-    const { categoryId } = req.params;
+    const { categoryId } = req.body;
 
     if (!categoryId) {
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
