@@ -91,14 +91,12 @@ module.exports = {
       throw error;
     }
   },
-  isExistingCafeByPosition: async (cafeAddress) => {
+  isExistingCafe: async (id) => {
     try{ 
       // const result = await sequelize.query(`SELECT CAFE.cafeAddress FROM CAFE WHERE CAFE.cafeAddress like '${cafeAddress}%';`);
       const result = await cafe.findOne({
         where: {
-          cafeAddress: {
-            [Op.like]: `${cafeAddress}%`
-          }
+          id: id
         }
       })
       return result;

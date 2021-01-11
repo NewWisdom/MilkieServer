@@ -11,7 +11,7 @@ module.exports = {
     const { query } = req.params;
     const { KAKAO_KEY } = process.env;
 
-    // try {
+    try {
       const kakaoOptions = {
         url: 'https://dapi.kakao.com/v2/local/search/keyword.json',  
         method: 'GET',
@@ -39,7 +39,7 @@ module.exports = {
         cafe["cafeAddress"] = result[i].road_address_name;
         cafe["cafeMapX"] = result[i].x;
         cafe["cafeMapY"] = result[i].y;
-        let isExistingCafeByPosition = await cafeService.isExistingCafeByPosition(result[i].road_address_name);
+        let isExistingCafeByPosition = await cafeService.isExistingCafe(result[i].id);
         if (!isExistingCafeByPosition){
           cafe["isReported"] = false;
         } else {
@@ -49,8 +49,8 @@ module.exports = {
       }
 
       return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_CAFE_INFO_SUCCESS,cafes));     
-    // } catch (error) {
-    //   return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
-    // }
+    } catch (error) {
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
+    }
   }
 }
