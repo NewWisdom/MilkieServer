@@ -16,6 +16,9 @@ module.exports = {
   // 유저 첫 번째 탭 조회
   USER_HOME_SUCCESS: "홈 조회 성공입니다.",
 
+  // 검색 조회
+  SEARCH_MILKY_WAY: "검색 조회 성공입니다.",
+
   // 유니버스
   UNIVERSEON_SUCCESS: "유니버스 추가 성공입니다.",
   DELETE_UNIVERSE_SUCCESS: "유니버스 삭제 성공입니다.",
