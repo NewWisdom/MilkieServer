@@ -11,31 +11,13 @@ module.exports = {
     const userIdx = req.userIdx;
 
     try {
-      const updateHours = await cafe.update({
-        businessHours : '',
-      }, {
-        where: {
-          businessHours: null
-        }
-      });
-
       const aroundCafe = await cafe.findAll({
         attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'cafeMapX', 'cafeMapY', 'isReal'],
         where: {
-          businessHours: updateHours,
           isReal: true
         },
         raw: true
-
       });
-      for (let i = 0; i < aroundCafe.length; i++){
-        const result = await universeService.isUniversed(userIdx, aroundCafe[i].id);
-        if (result.length == 0) {
-          aroundCafe[i]["isUniversed"] = false;
-        } else {
-          aroundCafe[i]["isUniversed"] = true;
-        }
-      }
 
       const universeResult = await universe.findAll({
         attributes: [[sequelize.fn('COUNT', sequelize.col('universeId')), 'universeCount']],
