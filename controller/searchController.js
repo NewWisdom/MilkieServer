@@ -11,13 +11,8 @@ module.exports = {
   searchCafeByDB: async (req, res) => {
     const userId = req.userIdx;
     const searchWord = req.params.searchWord;
-    // const Op = Sequelize.Op;
-    // const operatorsAliases = {
-    //   $like: Op.like,
-    //   $not: Op.not
-    // }
 
-    // try {
+    try {
       const searchCafeTemp = await sequelize.query(`select cafeName, cafeAddress, cafeMapX, cafeMapY 
       from CAFE
       where cafeName like '%${searchWord}%';`);
@@ -28,9 +23,9 @@ module.exports = {
       }
 
       return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.SEARCH_SUCCESS, searchCafe)); 
-    // } catch (error) {
-    //   return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.INTERNAL_SERVER_ERROR));
-    // }
+    } catch (error) {
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.INTERNAL_SERVER_ERROR));
+    }
   },
   searchCafeByKakaoAPI: async (req, res) => {
     const userId = req.userIdx;
