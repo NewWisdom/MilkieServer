@@ -30,7 +30,7 @@ module.exports = {
           }
         ],
         raw: true,
-        attributes: {exclude: ['cafeMapX', 'cafeMapY', 'cafeType', 'isReal']}
+        attributes: {exclude: ['longitude', 'latitude', 'cafeType', 'isReal']}
       });
       return result;
     } catch (error) {

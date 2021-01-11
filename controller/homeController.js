@@ -10,7 +10,7 @@ module.exports = {
     const userIdx = req.userIdx;
 
     try {
-      const tempResult = await sequelize.query(`SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.cafeMapX, CAFE.cafeMapY, CAFE.cafeAddress, CAFE.businessHours,
+      const tempResult = await sequelize.query(`SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
       ifnull(isUniversed, false) as isUniversed
               FROM CAFE LEFT JOIN (
                   SELECT distinct UNIVERSE.cafeId, count(UNIVERSE.cafeId) universeCount, true as isUniversed
@@ -92,7 +92,7 @@ module.exports = {
       const findMenu = findMenuArray;
 
       const categoryCafe = await cafe.findAll({
-        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'cafeMapX', 'cafeMapY', 'isReal'],
+        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'longitude', 'latitude', 'isReal'],
         where: {
           id : findMenu,
           isReal: true

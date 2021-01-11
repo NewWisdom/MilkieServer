@@ -130,15 +130,15 @@ module.exports = {
   }, 
   addCafe: async (req, res) => {
     const userId = req.userIdx;
-    const { cafeName, cafeAddress, cafeMapX, cafeMapY, honeyTip, menu } = req.body;
+    const { cafeName, cafeAddress, longitude, latitude, honeyTip, menu } = req.body;
 
-    if (!userId || !cafeName || !cafeAddress || !cafeMapX || !cafeMapY || !honeyTip || !menu) {
+    if (!userId || !cafeName || !cafeAddress || !longitude || !latitude || !honeyTip || !menu) {
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
 
     try {
       /** 카페 등록 */
-      const registerAddCafe = await reportService.registerCafe(cafeName, cafeAddress, cafeMapX, cafeMapY);
+      const registerAddCafe = await reportService.registerCafe(cafeName, cafeAddress, longitude, latitude);
       const registerAddCafeId = registerAddCafe.dataValues.id;
 
       /** honeyTip 등록 */

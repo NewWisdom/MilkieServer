@@ -103,7 +103,7 @@ module.exports = {
       const findUniverse = findUniverseArray;
 
       const aroundUniverse = await cafe.findAll({
-        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'cafeMapX', 'cafeMapY', 'isReal'],
+        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'longitude', 'latitude', 'isReal'],
         where: {
           id: findUniverse
         }
