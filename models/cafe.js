@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(200),
       allowNull: true
     },
-    cafeMapX: {
+    longitude: {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    cafeMapY: {
+    latitude: {
       type: DataTypes.DOUBLE,
       allowNull: false
     },

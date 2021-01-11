@@ -13,7 +13,7 @@ module.exports = {
     const searchWord = req.params.searchWord;
 
     try {
-      const searchCafeTemp = await sequelize.query(`select cafeName, cafeAddress, cafeMapX, cafeMapY 
+      const searchCafeTemp = await sequelize.query(`select cafeName, cafeAddress, longitude, latitude 
       from CAFE
       where cafeName like '%${searchWord}%';`);
       const searchCafe = searchCafeTemp[0];
@@ -57,8 +57,8 @@ module.exports = {
         let cafe = new Object();
         cafe["cafeName"] = result[i].place_name;
         cafe["cafeAddress"] = result[i].road_address_name;
-        cafe["cafeMapX"] = result[i].x;
-        cafe["cafeMapY"] = result[i].y;
+        cafe["longitude"] = result[i].x;
+        cafe["latitude"] = result[i].y;
         let isExistingCafeByPosition = await cafeService.isExistingCafe(result[i].id);
         if (!isExistingCafeByPosition){
           cafe["isReported"] = false;

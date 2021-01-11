@@ -75,15 +75,15 @@ module.exports = {
       throw error;
     }
   },
-  registerCafe: async (cafeName, cafeAddress, cafeMapX, cafeMapY) => {
+  registerCafe: async (cafeName, cafeAddress, longitude, latitude) => {
     try {
       const privateCafeType = 1;
       const notReal = 0;
       const registerCafeId = cafe.create({
           cafeName,
           cafeAddress,
-          cafeMapX,
-          cafeMapY,
+          longitude,
+          latitude,
           cafeType: privateCafeType,
           isReal: notReal
       });
