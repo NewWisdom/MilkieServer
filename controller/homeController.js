@@ -49,7 +49,7 @@ module.exports = {
   },
   categoryHome: async (req, res) => {
     const userIdx = req.userIdx;
-    const { categoryId } = req.body;
+    const { categoryId } = req.params;
 
     try {
       const findCategoryResult = await menuCategory.findAll({
