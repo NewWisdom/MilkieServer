@@ -13,14 +13,16 @@ module.exports = {
     const searchWord = req.params.searchWord;
 
     try {
-      const searchCafeTemp = await sequelize.query(`select cafeName, cafeAddress, longitude, latitude 
+      // if (!searchWord) {
+      //   return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NONE_SEARCH));
+      // }
+      // where cafeName like '%${searchWord}%';
+
+      const searchCafeTemp = await sequelize.query(`SELECT cafeName, cafeAddress, longitude, latitude 
       from CAFE
       where cafeName like '%${searchWord}%';`);
+
       const searchCafe = searchCafeTemp[0];
-      
-      if (!searchCafe) {
-        return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NONE_SEARCH))
-      }
 
       return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.SEARCH_SUCCESS, searchCafe)); 
     } catch (error) {

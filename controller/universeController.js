@@ -92,20 +92,25 @@ module.exports = {
 
     try {
       const findUniverseResult = await universe.findAll({
-        attributes: ['universeId'],
+        attributes: ['cafeId'],
+        where: {
+          userId: userIdx
+        }
       });
 
       var findUniverseArray = [];
       for (var i = 0; i < findUniverseResult.length; i++) {
-        findUniverseArray.push(findUniverseResult[i].universeId)
+        findUniverseArray.push(findUniverseResult[i].cafeId)
       }
 
+      console.log(findUniverseArray);
       const findUniverse = findUniverseArray;
 
       const aroundUniverse = await cafe.findAll({
-        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'longitude', 'latitude', 'isReal'],
+        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'longitude', 'latitude'],
         where: {
-          id: findUniverse
+          id: findUniverse,
+          isReal: true
         }
       });
 
