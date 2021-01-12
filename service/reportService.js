@@ -1,10 +1,14 @@
 const { cafe, deleteManage, editManage, addManage, cafeHoneyTip, menuCategory, menu, user, sequelize} = require('../models');
 
 module.exports = {
-  readOneDeleteCafe: async (userId) => {
+  readOneDeleteCafe: async (userId, cafeId) => {
     try {
       const result = deleteManage.findOne({
-        userId: userId
+        where: {
+          userId: userId,
+          cafeId: cafeId
+        },
+        raw: true
       });
       return result;
     } catch (error) {
