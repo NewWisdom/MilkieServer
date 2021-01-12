@@ -53,14 +53,19 @@ module.exports = {
                           return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
                       });
       const cafes = [];
+      const allCafeIdTemp = await cafeService.readAllCafeId();
+      const allCafeId = [];
+      for (let i = 0; i < allCafeIdTemp.length; i++){
+        allCafeId.push(allCafeIdTemp[i].id)
+      }
       for (let i = 0; i < result.length; i++) {
         let cafe = new Object();
         cafe["cafeName"] = result[i].place_name;
         cafe["cafeAddress"] = result[i].road_address_name;
         cafe["longitude"] = result[i].x;
         cafe["latitude"] = result[i].y;
-        let isExistingCafeByPosition = await cafeService.isExistingCafe(result[i].id);
-        if (!isExistingCafeByPosition){
+        let isExistingCafeByPosition = allCafeId.indexOf(parseInt(result[i].id))
+        if (isExistingCafeByPosition == -1){
           cafe["isReported"] = false;
         } else {
           cafe["isReported"] = true;

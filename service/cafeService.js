@@ -112,5 +112,16 @@ module.exports = {
       throw error;
     }
   },
+  readAllCafeId: async () => {
+    try{ 
+      const result =  cafe.findAll({
+        attributes: ['id'],
+        raw: true
+      })
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
  
 } 
