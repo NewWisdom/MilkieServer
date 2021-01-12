@@ -27,7 +27,7 @@ module.exports = {
       throw error;
     }
   },
-  readOneEditCafe: async (userId) => {
+  readOneEditCafe: async (userId, cafeId) => {
     try {
       const result = editManage.findOne({
         where: {
