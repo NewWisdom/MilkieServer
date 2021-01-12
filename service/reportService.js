@@ -30,7 +30,11 @@ module.exports = {
   readOneEditCafe: async (userId) => {
     try {
       const result = editManage.findOne({
-        userId
+        where: {
+          userId: userId,
+          cafeId: cafeId
+        },
+        raw: true
       });
       return result;
     } catch (error) {

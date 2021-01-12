@@ -20,7 +20,6 @@ module.exports = {
       }
 
       const alreadyRequest = await reportService.readOneDeleteCafe(userId, cafeId);
-      console.log(alreadyRequest)
       if (alreadyRequest) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_DELETE_REQUEST_USER));
       }
@@ -46,7 +45,7 @@ module.exports = {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_EXISTING_CAFE));
       }
 
-      const alreadyRequest = await reportService.readOneEditCafe(userId);
+      const alreadyRequest = await reportService.readOneEditCafe(userId, cafeId);
       if (alreadyRequest) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_EDIT_REQUEST_USER));
       }
