@@ -16,7 +16,8 @@ module.exports = {
                   SELECT distinct UNIVERSE.cafeId, count(UNIVERSE.cafeId) universeCount, true as isUniversed
                   FROM UNIVERSE
                   WHERE userId = ${userIdx}
-              ) as cu ON CAFE.id = cu.cafeId;`);
+              ) as cu ON CAFE.id = cu.cafeId
+              where CAFE.isReal = true;`);
       const result = tempResult[0];
       for (let i = 0; i < result.length; i++) {
         if (result[i].isUniversed == 1) {
