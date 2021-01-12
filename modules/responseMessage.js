@@ -15,6 +15,7 @@ module.exports = {
 
   // 유저 첫 번째 탭 조회
   USER_HOME_SUCCESS: "홈 조회 성공입니다.",
+  NOT_SEARCH_CAFE: "해당 카테고리의 카페가 없습니다.",
 
   // 검색 조회,
   SEARCH_SUCCESS: "검색 조회 성공입니다.",
