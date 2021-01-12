@@ -8,7 +8,7 @@ module.exports = {
     const userId = req.userIdx;
     const { cafeId } = req.params;
     const { reason } = req.body;
-
+    
     if (!userId || !cafeId || !reason){
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
@@ -19,7 +19,8 @@ module.exports = {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_EXISTING_CAFE));
       }
 
-      const alreadyRequest = await reportService.readOneDeleteCafe(userId);
+      const alreadyRequest = await reportService.readOneDeleteCafe(userId, cafeId);
+      console.log(alreadyRequest)
       if (alreadyRequest) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_DELETE_REQUEST_USER));
       }
