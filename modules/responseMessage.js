@@ -16,8 +16,7 @@ module.exports = {
   // 유저 첫 번째 탭 조회
   USER_HOME_SUCCESS: "홈 조회 성공입니다.",
 
-  // 검색 조회
-  NONE_SEARCH: "사용자가 검색한 카페가 없습니다.",
+  // 검색 조회,
   SEARCH_SUCCESS: "검색 조회 성공입니다.",
 
   // 유니버스
