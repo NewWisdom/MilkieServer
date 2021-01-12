@@ -51,17 +51,12 @@ module.exports = {
     const userIdx = req.userIdx;
     const { categoryId } = req.body;
 
-    if (!categoryId) {
-      return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
-    } 
-
     try {
       const findCategoryResult = await menuCategory.findAll({
         attributes: ['menuId'],
         where: {
           categoryId: categoryId
         },
-        raw: true
       });
 
       if (!findCategoryResult) {
@@ -80,7 +75,6 @@ module.exports = {
         where: {
           menuId : findCategory
         },
-        raw: true
       });
 
       if (!findMenuResult) {
@@ -93,7 +87,6 @@ module.exports = {
       }
 
       const findMenu = findMenuArray;
-      console.log(findMenuArray);
 
       const tempResult = await sequelize.query(`SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
       ifnull(isUniversed, false) as isUniversed
@@ -102,11 +95,9 @@ module.exports = {
                   FROM UNIVERSE
                   WHERE userId = ${userIdx}
               ) as cu ON CAFE.id = cu.cafeId
-              where CAFE.id in ${findMenu} and CAFE.isReal = true;`);
+              where CAFE.id in (${findMenu}) and CAFE.isReal = true;`);
 
-      console.log(tempResult);
       const result = tempResult[0];
-      console.log(result);
 
       for (let i = 0; i < result.length; i++) {
         if (result[i].isUniversed == 1) {
@@ -115,34 +106,6 @@ module.exports = {
           result[i].isUniversed = false
         }
       }
-
-      // const temp = await sequelize.query(`SELECT MENU.menuId
-      //         FROM MENU LEFT JOIN (
-      //             SELECT distinct MENU_CATEGORY.menuId
-      //             FROM MENU_CATEGORY
-      //             WHERE categoryId = ${categoryId}
-      //         ) as mu ON MENU.menuId = mu.menuId`);
-
-      // const category = temp[0];
-      // for (let i = 0; i < category.length; i++) {
-      //   temp.push(temp[i].menuId)
-      // }
-      // console.log(category);
-      // FROM CAFE LEFT JOIN (
-      //   SELECT CAFE.id
-      //   FROM MENU
-      //   WHERE userId = ${userIdx}
-      // ) as mu On CAFE.id = mu.cafeId
-      // where CAFE.id = ${[findMenu]};
-
-      // console.log(tempResult);
-      // for (let i = 0; i < categoryCafe.length; i++) {
-      //   if (categoryCafe[i].id == 0) {
-      //     categoryCafe = []
-      //   } else {
-      //     categoryCafe
-      //   }
-      // }
 
       const userNickName = await user.findAll({
         attributes: ['nickName'],
