@@ -18,7 +18,9 @@ module.exports = {
                   WHERE userId = ${userIdx}
               ) as cu ON CAFE.id = cu.cafeId
               where CAFE.isReal = true;`);
+
       const result = tempResult[0];
+
       for (let i = 0; i < result.length; i++) {
         if (result[i].isUniversed == 1) {
           result[i].isUniversed = true
@@ -26,6 +28,7 @@ module.exports = {
           result[i].isUniversed = false
         }
       }
+
       const userNickName = await user.findAll({
         attributes: ['nickName'],
         where: {
