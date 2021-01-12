@@ -13,11 +13,6 @@ module.exports = {
     const searchWord = req.params.searchWord;
 
     try {
-      // if (!searchWord) {
-      //   return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NONE_SEARCH));
-      // }
-      // where cafeName like '%${searchWord}%';
-
       const searchCafeTemp = await sequelize.query(`SELECT cafeName, cafeAddress, longitude, latitude 
       from CAFE
       where cafeName like '%${searchWord}%';`);
