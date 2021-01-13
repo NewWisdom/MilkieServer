@@ -4,6 +4,7 @@ const util = require("../modules/util");
 const { user, universe, cafe, menuCategory, menu } = require('../models/index');
 const jwt = require('../modules/jwt');
 const sequelize = require('sequelize');
+const { universeService } = require('../service');
 
 module.exports = {
   universeOn: async (req, res) => {
@@ -91,28 +92,33 @@ module.exports = {
     const userIdx = req.userIdx;
 
     try {
-      const findUniverseResult = await universe.findAll({
-        attributes: ['cafeId'],
-        where: {
-          userId: userIdx
-        }
-      });
+      // const findUniverseResult = await universe.findAll({
+      //   attributes: ['cafeId'],
+      //   where: {
+      //     userId: userIdx
+      //   },
+      //   order: [
+      //     ['universeId', 'DESC']
+      // ]
+      // });
 
-      var findUniverseArray = [];
-      for (var i = 0; i < findUniverseResult.length; i++) {
-        findUniverseArray.push(findUniverseResult[i].cafeId)
-      }
+      // var findUniverseArray = [];
+      // for (var i = 0; i < findUniverseResult.length; i++) {
+      //   findUniverseArray.push(findUniverseResult[i].cafeId)
+      // }
 
-      console.log(findUniverseArray);
-      const findUniverse = findUniverseArray;
+      // console.log(findUniverseArray);
+      // const findUniverse = findUniverseArray;
 
-      const aroundUniverse = await cafe.findAll({
-        attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'longitude', 'latitude'],
-        where: {
-          id: findUniverse,
-          isReal: true
-        }
-      });
+      // const aroundUniverse = await cafe.findAll({
+      //   attributes: ['id', 'cafeName', 'cafeAddress', 'businessHours', 'longitude', 'latitude'],
+      //   where: {
+      //     id: findUniverse,
+      //     isReal: true
+      //   }
+      // });
+      const aroundUniverseTemp = await universeService.getAroundUniverse(userIdx);
+      const aroundUniverse = aroundUniverseTemp[0];
 
       const userNickName = await user.findAll({
         attributes: ['nickName'],
