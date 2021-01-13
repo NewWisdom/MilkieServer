@@ -9,14 +9,16 @@ module.exports = {
     const userIdx = req.userIdx;
 
     try {
-      const tempResult = await sequelize.query(`SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
+      const tempResult = await sequelize.query(
+      `SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
       ifnull(isUniversed, false) as isUniversed
-              FROM CAFE LEFT JOIN (
-                  SELECT distinct UNIVERSE.cafeId, count(UNIVERSE.cafeId) universeCount, true as isUniversed
-                  FROM UNIVERSE
-                  WHERE userId = ${userIdx}
-              ) as cu ON CAFE.id = cu.cafeId
-              where CAFE.isReal = true;`);
+      FROM CAFE 
+      JOIN (
+        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, false) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
+        FROM UNIVERSE 
+      group by UNIVERSE.cafeId
+      ) as cu ON CAFE.id = cu.cafeId;`
+      );
 
       const result = tempResult[0];
 
