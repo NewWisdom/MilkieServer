@@ -13,7 +13,7 @@ module.exports = {
     const searchWord = req.params.searchWord;
 
     try {
-      const searchCafeTemp = await sequelize.query(`SELECT cafeName, cafeAddress, longitude, latitude 
+      const searchCafeTemp = await sequelize.query(`SELECT cafeName, cafeAddress, longitude, latitude, businessHours
       from CAFE
       where cafeName like '%${searchWord}%';`);
 
