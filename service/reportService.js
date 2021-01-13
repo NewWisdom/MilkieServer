@@ -176,7 +176,8 @@ module.exports = {
   },
   readConfirmedReports: async (userId) => {
     try {
-      const confirm = 2;
+      const confirm = 3;
+      
       const result = await sequelize.query(`SELECT c.id, c.cafeName, c.cafeAddress, a.created_at FROM CAFE c INNER JOIN ( ADD_MANAGE a INNER JOIN USER u ON u.id = a.userId) ON c.id = a.cafeId AND u.id = ${userId} where a.confirmStatus = ${confirm};`)
       return result;
     } catch (error) {
