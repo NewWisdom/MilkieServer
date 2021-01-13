@@ -14,24 +14,16 @@ module.exports = {
       throw error;
     }
   },
-  readCafeInfo: async (cafeId) => {
+  readCafeInfo: async (userId, cafeId) => {
     try {
-      /** 카페 옵션까지 조회 완료 */
-      const result = await cafe.findAll({
-        where: {
-          id: cafeId
-        },
-        include: [
-          {
-            model : honeyTip,
-            as: 'hasCafe',
-            attributes : ['id'],
-            through: { attributes: []} 
-          }
-        ],
-        raw: true,
-        attributes: {exclude: ['longitude', 'latitude', 'cafeType', 'isReal']}
-      });
+      const result = await sequelize.query(`
+      SELECT CAFE.id, CAFE.cafeName, CAFE.cafeAddress, CAFE.businessHours, CAFE.cafePhoneNum, CAFE.cafeLink, ifnull(universeCount, 0) universeCount, ifnull(isUniversed, false) as isUniversed
+      FROM CAFE left JOIN (
+        SELECT UNIVERSE.cafeId, count(UNIVERSE.cafeId) universeCount, true as isUniversed
+        FROM UNIVERSE 
+        WHERE userId = ${userId}
+      ) as cu ON CAFE.id = cu.cafeId
+      where CAFE.id = ${cafeId};`)
       return result;
     } catch (error) {
       throw error;
