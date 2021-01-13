@@ -42,7 +42,7 @@ module.exports = {
   },
   universeOff: async (req, res) => {
     const userIdx = req.userIdx;
-    const { cafeId } = req.body;
+    const { cafeId } = req.params;
 
     try {
       if (!cafeId) {
