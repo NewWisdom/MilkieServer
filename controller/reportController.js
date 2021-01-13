@@ -65,23 +65,23 @@ module.exports = {
       const canceledReportsResult = await reportService.readCanceledReports(userId);
       const canceledReports = canceledReportsResult[0];
       if (canceledReports.length == 0) {
-        reports['1']= []
+        reports['cancel']= []
       } else {
-        reports['1'] = canceledReports
+        reports['cancel'] = canceledReports
       }
 
       const progressReportsResult = await reportService.readProgressReports(userId);
       const progressReports = progressReportsResult[0];
       if (progressReports.length == 0) {
-        reports['2']= []
+        reports['ing']= []
       } else {
-        reports['2'] = progressReports
+        reports['ing'] = progressReports
       }
 
       const temp = await reportService.readConfirmedReports(userId);
       const confirmedReports = temp[0];
       if (confirmedReports.length == 0) {
-        reports['3']= []
+        reports['done']= []
       } else {
         for (let i = 0; i < confirmedReports.length; i++){
           let tt = await cafeService.readCafeCategory(confirmedReports[i].id);
@@ -90,7 +90,7 @@ module.exports = {
             confirmedReports[i]['category'].push(tt[0][j].categoryId)
           }
         }
-        reports['3'] = confirmedReports
+        reports['done'] = confirmedReports
       }
     
       return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_REPORTS_SUCCESS, reports));
