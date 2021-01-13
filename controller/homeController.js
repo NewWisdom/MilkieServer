@@ -12,12 +12,13 @@ module.exports = {
       const tempResult = await sequelize.query(
       `SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
       ifnull(isUniversed, false) as isUniversed
-      FROM CAFE 
-      JOIN (
+      FROM CAFE
+      LEFT JOIN (
         SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, false) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
         FROM UNIVERSE 
       group by UNIVERSE.cafeId
-      ) as cu ON CAFE.id = cu.cafeId;`
+      ) as cu ON CAFE.id = cu.cafeId
+      where CAFE.isReal = true;`
       );
 
       const result = tempResult[0];
@@ -90,16 +91,23 @@ module.exports = {
 
       const findMenu = findMenuArray;
 
-      const tempResult = await sequelize.query(`SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
+      const tempResult = await sequelize.query(
+      `SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
       ifnull(isUniversed, false) as isUniversed
-              FROM CAFE LEFT JOIN (
-                  SELECT distinct UNIVERSE.cafeId, count(UNIVERSE.cafeId) universeCount, true as isUniversed
-                  FROM UNIVERSE
-                  WHERE userId = ${userIdx}
-              ) as cu ON CAFE.id = cu.cafeId
-              where CAFE.id in (${findMenu}) and CAFE.isReal = true;`);
+      FROM CAFE 
+      LEFT JOIN (
+        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, false) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
+        FROM UNIVERSE 
+      group by UNIVERSE.cafeId
+      ) as cu ON CAFE.id = cu.cafeId
+      where CAFE.id in (${findMenu}) and CAFE.isReal = true;`
+      );
 
       const result = tempResult[0];
+
+      if (result.length == 0) {
+        return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_SEARCH_CAFE));
+      }
 
       for (let i = 0; i < result.length; i++) {
         if (result[i].isUniversed == 1) {
