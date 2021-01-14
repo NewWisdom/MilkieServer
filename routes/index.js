@@ -12,5 +12,6 @@ router.use('/universe', require('./universe'));
 router.use('/cafe', require('./cafe'));
 router.use('/home', require('./home'));
 router.use('/search', require('./search'));
+router.use('/admin', require('./admin'));
 
 module.exports = router;

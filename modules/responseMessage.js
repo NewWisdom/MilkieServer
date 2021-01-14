@@ -63,5 +63,10 @@ module.exports = {
   IS_REAL_CAFE: "등록된 카페이므로 삭제할 수 없습니다",
 
   // 카카오맵 API 검색
-  KAKAO_SEARCH_ERROR: "카카오맵 API 검색 에러 입니다."
+  KAKAO_SEARCH_ERROR: "카카오맵 API 검색 에러 입니다.",
+
+  // 관리자
+  NOT_ADMIN: "관리자 계정이 아닙니다",
+  CANCEL_REPORT_FAIL: "카페 제보 취소 실패입니다",
+  CANCEL_REPORT_SUCCESS: "카페 제보 취소 성공입니다"
 }
