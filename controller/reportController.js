@@ -20,7 +20,7 @@ module.exports = {
       }
 
       const alreadyRequest = await reportService.readOneDeleteCafe(userId, cafeId);
-      if (alreadyRequest) {
+      if (!alreadyRequest) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_DELETE_REQUEST_USER));
       }
 
@@ -113,12 +113,12 @@ module.exports = {
       }
 
       const isRightReportUser = await reportService.readReportUser(userId, cafeId);
-      if (isRightReportUser.length == 0) {
+      if (!isRightReportUser) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_RIGHT_REPORT_USER));
       }
 
       const isNotRealYet = await cafeService.checkCafeIsNotReal(cafeId);
-      if (isNotRealYet.length == 0) {
+      if (!isNotRealYet) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.IS_REAL_CAFE));
       }
 
