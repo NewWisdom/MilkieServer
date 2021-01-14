@@ -14,12 +14,12 @@ module.exports = {
 
     try {
       const isAdmin = await adminService.isAdmin(userId);
-      if (isAdmin.length == 0) {
+      if (isAdmin) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_ADMIN));
       }
       
       const isAlreadyCancel = await adminService.isAlreadyCancel(cafeId);
-      if (isAlreadyCancel.length == 0) {
+      if (isAlreadyCancel) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.CANCEL_REPORT_FAIL));
       }
 
