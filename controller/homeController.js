@@ -14,7 +14,7 @@ module.exports = {
       ifnull(isUniversed, false) as isUniversed
       FROM CAFE
       LEFT JOIN (
-        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, false) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
+        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, null) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
         FROM UNIVERSE 
       group by UNIVERSE.cafeId
       ) as cu ON CAFE.id = cu.cafeId
