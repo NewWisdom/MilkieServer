@@ -12,12 +12,18 @@ module.exports = {
       const tempResult = await sequelize.query(
       `SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
       ifnull(isUniversed, false) as isUniversed
-      FROM CAFE
-      LEFT JOIN (
-        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, null) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
+      FROM CAFE 
+      left outer JOIN (
+        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, null) as isUniversed, userId
+        FROM UNIVERSE 
+        where userId = ${userIdx}
+      group by UNIVERSE.cafeId, userId
+      ) as cu2 ON CAFE.id = cu2.cafeId
+      left outer JOIN (
+        SELECT UNIVERSE.cafeId , count(UNIVERSE.cafeId) universeCount
         FROM UNIVERSE 
       group by UNIVERSE.cafeId
-      ) as cu ON CAFE.id = cu.cafeId
+      ) as cu1 ON CAFE.id = cu1.cafeId
       where CAFE.isReal = true;`
       );
 
@@ -95,11 +101,17 @@ module.exports = {
       `SELECT CAFE.id, CAFE.cafeName, ifnull(universeCount, 0) universeCount, CAFE.longitude, CAFE.latitude, CAFE.cafeAddress, CAFE.businessHours,
       ifnull(isUniversed, false) as isUniversed
       FROM CAFE 
-      LEFT JOIN (
-        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, false) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
+      left outer JOIN (
+        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userIdx}, true, null) as isUniversed, userId
+        FROM UNIVERSE 
+        where userId = ${userIdx}
+      group by UNIVERSE.cafeId, userId
+      ) as cu2 ON CAFE.id = cu2.cafeId
+      left outer JOIN (
+        SELECT UNIVERSE.cafeId , count(UNIVERSE.cafeId) universeCount
         FROM UNIVERSE 
       group by UNIVERSE.cafeId
-      ) as cu ON CAFE.id = cu.cafeId
+      ) as cu1 ON CAFE.id = cu1.cafeId
       where CAFE.id in (${findMenu}) and CAFE.isReal = true;`
       );
 
