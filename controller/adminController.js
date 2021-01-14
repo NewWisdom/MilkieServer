@@ -12,20 +12,21 @@ module.exports = {
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
 
-    // try {
+    try {
       const isAdmin = await adminService.isAdmin(userId);
       if (isAdmin.length == 0) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NOT_ADMIN));
       }
       
-      const result = await adminService.cancelReport(cafeId, rejectReasonId);
-      if (result.length == 0) {
+      const isAlreadyCancel = await adminService.isAlreadyCancel(cafeId);
+      if (isAlreadyCancel.length == 0) {
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.CANCEL_REPORT_FAIL));
       }
-      return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.CANCEL_REPORT_SUCCESS));
-    // } catch (error) {
-    //   return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
-    // }
 
+      const result = await adminService.cancelReport(cafeId, rejectReasonId);      
+      return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.CANCEL_REPORT_SUCCESS));
+    } catch (error) {
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.INTERNAL_SERVER_ERROR));
+    }
   }
 }

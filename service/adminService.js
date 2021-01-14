@@ -15,6 +15,21 @@ module.exports = {
       throw error;
     }
   },
+  isAlreadyCancel: async (cafeId) => {
+    try {
+      const cancel = 1;
+      const result = addManage.findOne({
+        where: {
+          cafeId: cafeId,
+          confirmStatus: cancel
+        },
+        raw: true
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
   cancelReport: async (cafeId, rejectReasonId) => {
     try {
       const cancel = 1;

@@ -67,6 +67,6 @@ module.exports = {
 
   // 관리자
   NOT_ADMIN: "관리자 계정이 아닙니다",
-  CANCEL_REPORT_FAIL: "카페 제보 취소 실패입니다",
+  CANCEL_REPORT_FAIL: "이미 취소된 카페 제보입니다",
   CANCEL_REPORT_SUCCESS: "카페 제보 취소 성공입니다"
 }
