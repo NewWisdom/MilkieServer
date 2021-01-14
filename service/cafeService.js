@@ -24,15 +24,30 @@ module.exports = {
       //   WHERE userId = ${userId}
       // ) as cu ON CAFE.id = cu.cafeId
       // where CAFE.id = ${cafeId};`)
+      // const result = await sequelize.query(`
+      // SELECT CAFE.id, CAFE.cafeName, CAFE.cafeAddress, CAFE.businessHours, CAFE.cafePhoneNum, CAFE.cafeLink, ifnull(universeCount, 0) universeCount, ifnull(isUniversed, false) as isUniversed
+      // FROM CAFE
+      // LEFT JOIN (
+      //   SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userId}, true, false) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
+      //   FROM UNIVERSE 
+      // group by UNIVERSE.cafeId
+      // ) as cu ON CAFE.id = cu.cafeId
+      // where CAFE.id = ${cafeId};`)
       const result = await sequelize.query(`
       SELECT CAFE.id, CAFE.cafeName, CAFE.cafeAddress, CAFE.businessHours, CAFE.cafePhoneNum, CAFE.cafeLink, ifnull(universeCount, 0) universeCount, ifnull(isUniversed, false) as isUniversed
-      FROM CAFE
-      LEFT JOIN (
-        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userId}, true, false) as isUniversed, UNIVERSE.userId, count(UNIVERSE.cafeId) universeCount
+      FROM CAFE 
+      left outer JOIN (
+        SELECT UNIVERSE.cafeId , if ( UNIVERSE.userid = ${userId}, true, null) as isUniversed, userId
+        FROM UNIVERSE 
+        where userId = ${userId}
+      group by UNIVERSE.cafeId, userId
+      ) as cu2 ON CAFE.id = cu2.cafeId
+      left outer JOIN (
+        SELECT UNIVERSE.cafeId , count(UNIVERSE.cafeId) universeCount
         FROM UNIVERSE 
       group by UNIVERSE.cafeId
-      ) as cu ON CAFE.id = cu.cafeId
-      where CAFE.id = ${cafeId};`)
+      ) as cu1 ON CAFE.id = cu1.cafeId
+      where CAFE.id = ${cafeId}`)
       return result;
     } catch (error) {
       throw error;
