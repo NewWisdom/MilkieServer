@@ -2,6 +2,16 @@
 #### '속'상하기 쉬운 모두를 위한 카페 위치 제공 서비스, 밀키웨이  
 
 ![image](https://user-images.githubusercontent.com/43840561/103670502-fe127300-4fbc-11eb-94bd-11b17fac2373.png)
+> SOPT 27기 17TH APPJAM - TEAM MilkyWay 🤍  
+2020.12.26 ~ 2021.01.16
+
+<br>
+
+## 🌌 Work Flow
+
+![워크 플로우](https://user-images.githubusercontent.com/68318945/104731826-9fe54d00-577f-11eb-9752-85d7863a51f2.jpg)
+
+<br>
 
 ## 👑  MilkieServer
 ######  Milkies Lover, Milkies Server . . .✨
@@ -11,7 +21,6 @@
 
 
 <br>
-
 
 ## ❗️ Convention
 
