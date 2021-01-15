@@ -5,6 +5,8 @@
 > SOPT 27기 17TH APPJAM - TEAM MilkyWay 🤍  
 2020.12.26 ~ 2021.01.16
 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FMilkyOnOurWay%2FMilkieServer&count_bg=%233320A6&title_bg=%23C2C2C2&icon=&icon_color=%23FFFFFF&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
 <br>
 
 ## 🌌 Work Flow
