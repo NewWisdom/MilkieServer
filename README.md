@@ -1,5 +1,4 @@
-<div align="center">
-
+# 🥛 Milky Way
 <img src="https://user-images.githubusercontent.com/68267763/104742781-37519c80-578e-11eb-8086-5427e9d6d7ed.jpeg">
 
 ## '속'상하기 쉬운 모두를 위한 카페 위치 제공 서비스, 밀키웨이
