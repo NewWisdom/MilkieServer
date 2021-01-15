@@ -1,7 +1,8 @@
-# 🥛 Milky Way
-#### '속'상하기 쉬운 모두를 위한 카페 위치 제공 서비스, 밀키웨이  
+<div align="center">
 
-![image](https://user-images.githubusercontent.com/43840561/103670502-fe127300-4fbc-11eb-94bd-11b17fac2373.png)
+<img src="https://user-images.githubusercontent.com/68267763/104742781-37519c80-578e-11eb-8086-5427e9d6d7ed.jpeg">
+
+## '속'상하기 쉬운 모두를 위한 카페 위치 제공 서비스, 밀키웨이
 > SOPT 27기 17TH APPJAM - TEAM MilkyWay 🤍  
 2020.12.26 ~ 2021.01.16
 
