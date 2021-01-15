@@ -15,7 +15,7 @@ module.exports = {
     try {
       const searchCafeTemp = await sequelize.query(`SELECT cafeName, cafeAddress, longitude, latitude, businessHours
       from CAFE
-      where cafeName like '%${searchWord}%';`);
+      where cafeName like '%${searchWord}%' and isReal = true;`);
 
       const searchCafe = searchCafeTemp[0];
 
