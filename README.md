@@ -7,7 +7,7 @@
 ######  Milkies Lover, Milkies Server . . .✨
 |               [신지혜](https://github.com/NewWisdom)                |        [최다인](https://github.com/Chedda98)              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | 
-| <img src="https://user-images.githubusercontent.com/43840561/103657850-c3550e80-4fad-11eb-91ea-6f1926d49a34.png" height="300" /> | <img src="https://user-images.githubusercontent.com/68318945/104224837-da51a000-5488-11eb-8983-b45ad51d6403.jpg" height="300" /> | 
+| <img src="https://user-images.githubusercontent.com/68318945/104730521-893df680-577d-11eb-9e41-3a8165666698.jpg" height="300" /> | <img src="https://user-images.githubusercontent.com/68318945/104224837-da51a000-5488-11eb-8983-b45ad51d6403.jpg" height="300" /> | 
 
 
 <br>
