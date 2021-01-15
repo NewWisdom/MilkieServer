@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     menuName: {
-      type: DataTypes.STRING(16),
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     price: {
